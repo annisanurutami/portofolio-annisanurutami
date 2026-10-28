@@ -183,18 +183,27 @@ h1, h2, h3, p { margin-top: 0; }
 .skill-expertise-list strong { color: var(--navy); font-size: 12px; font-weight: 800; }
 .skill-expertise-list small { color: var(--muted); font-size: 10px; line-height: 1.4; }
 
-.education { padding-top: 62px; padding-bottom: 52px; }
-.timeline-card { position: relative; display: flex; max-width: none; margin-top: 24px; padding: 32px 40px; align-items: center; gap: 30px; border: 1px solid rgba(59, 89, 132, .1); border-radius: 22px; background: var(--white); box-shadow: 0 16px 45px rgba(59, 89, 132, .08); }
-.timeline-card + .timeline-card { margin-top: 16px; }
-.school-logo-link { display: grid; width: 140px; height: 140px; flex: 0 0 auto; place-items: center; overflow: hidden; border-radius: 20px; background: #f7fbe4; }
+.education { position: relative; display: grid; padding-top: 62px; padding-bottom: 52px; overflow-x: clip; gap: 32px 54px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.education > .section-heading { margin-bottom: 0; grid-column: 1 / -1; }
+.timeline-card { position: relative; display: flex; min-width: 0; max-width: none; min-height: 430px; margin: 0; padding: 30px 24px 26px; align-items: flex-start; gap: 22px; isolation: isolate; flex-direction: column; }
+.timeline-card + .timeline-card { margin-top: 0; }
+.timeline-card::after { position: absolute; top: 53px; left: 10px; z-index: -2; width: 206px; height: 214px; border-radius: 54% 46% 41% 59% / 49% 40% 60% 51%; background: radial-gradient(circle at 40% 35%, #fff 0 16%, #e3f0fc 78%); content: ""; transform: rotate(-9deg); transition: transform .35s ease, border-radius .35s ease; }
+.timeline-card:hover::after { border-radius: 43% 57% 59% 41% / 57% 49% 51% 43%; transform: rotate(-3deg) scale(1.04); }
+.timeline-card-internship::after { background: radial-gradient(circle at 40% 35%, #fff 0 16%, #ffe6f0 78%); transform: rotate(8deg); }
+.timeline-card-internship:hover::after { transform: rotate(2deg) scale(1.04); }
+.education::before { display: none; }
+.school-logo-link { display: grid; width: 174px; height: 174px; margin: 12px 0 0 11px; place-items: center; overflow: hidden; border: 1px solid rgba(59, 89, 132, .08); border-radius: 50%; background: rgba(255, 255, 255, .86); box-shadow: 0 16px 38px rgba(59, 89, 132, .12); transition: transform .25s ease; }
+.school-logo-link:hover { transform: translateY(-5px) rotate(-4deg); }
+.school-logo-link:not(.telesis-logo-link) { overflow: visible; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
 .school-logo { display: block; width: 100%; height: 100%; object-fit: contain; }
-.telesis-logo-link { background: #f0f7fc; }
+.telesis-logo-link { border-color: rgba(255, 89, 156, .4); background: radial-gradient(circle at 35% 30%, #fff 0 25%, #fff0f6 78%); }
 .telesis-logo { width: 88%; height: 78%; }
 .timeline-content { min-width: 0; }
-.timeline-label { margin: 0 0 5px; color: var(--hot-pink); font-family: "Space Mono", monospace; font-size: 9px; letter-spacing: .08em; }
-.timeline-card h3 { margin: 0 0 8px; color: var(--navy); font-family: var(--display-font); font-size: 26px; font-weight: 500; }
-.timeline-content > p:not(.timeline-label) { max-width: 520px; margin: 0; color: var(--muted); font-size: 13px; }
-.timeline-status { margin-left: auto; padding: 5px 11px; border-radius: 20px; color: var(--navy); background: var(--pale-yellow); font-size: 10px; font-weight: 800; white-space: nowrap; }
+.timeline-label { margin: 0 0 8px; color: var(--hot-pink); font-family: "Space Mono", monospace; font-size: 9px; letter-spacing: .08em; }
+.timeline-card h3 { margin: 0 0 12px; color: var(--navy); font-family: var(--display-font); font-size: clamp(25px, 2.7vw, 34px); font-weight: 600; line-height: 1.12; }
+.timeline-content > p:not(.timeline-label) { max-width: 560px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.85; }
+.timeline-status { position: absolute; top: 31px; right: 22px; z-index: 1; margin: 0; padding: 9px 14px; border: 0; border-radius: 50%; color: var(--navy); background: #fff6cf; box-shadow: 0 5px 14px rgba(59, 89, 132, .08); font-family: "Space Mono", monospace; font-size: 10px; font-weight: 700; white-space: nowrap; transform: rotate(5deg); }
+.timeline-card-internship .timeline-status { color: #b44173; background: #fff0f6; transform: rotate(-5deg); }
 .profile-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 13px; }
 .profile-link { display: inline-flex; min-height: 32px; padding: 0 12px; align-items: center; gap: 7px; border: 1px solid rgba(59, 89, 132, .15); border-radius: 18px; color: var(--navy); background: var(--white); font-size: 10px; font-weight: 800; transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease; }
 .profile-link span { color: var(--hot-pink); }
@@ -208,27 +217,9 @@ h1, h2, h3, p { margin-top: 0; }
 .icon-link svg { display: block; width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
 .icon-link svg .icon-fill { fill: currentColor; stroke: none; }
 .icon-link:hover { transform: translateY(-3px); }
-.timeline-card::after {
-  position: absolute;
-  top: 17px;
-  right: 24px;
-  color: rgba(255, 89, 156, .55);
-  content: "✳";
-  font-size: 28px;
-  animation: twinkle 4s ease-in-out infinite;
-  pointer-events: none;
-}
-.timeline-card::before {
-  position: absolute;
-  right: 72px;
-  bottom: 20px;
-  width: 52px;
-  height: 52px;
-  border: 1px dashed rgba(167, 199, 231, .48);
-  border-radius: 50%;
-  content: "";
-  pointer-events: none;
-}
+.reveal-ready .timeline-card.reveal { opacity: 0; transform: translateX(-52px); transition: opacity .65s ease var(--reveal-delay, 0ms), transform .8s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms); }
+.reveal-ready .timeline-card-internship.reveal { transform: translateX(52px); }
+.reveal-ready .timeline-card.reveal.is-visible { opacity: 1; transform: translateX(0); }
 .internship-dialog { width: min(760px, calc(100% - 32px)); max-width: none; max-height: min(88dvh, 820px); padding: 0; overflow: hidden; border: 1px solid rgba(59, 89, 132, .13); border-radius: 24px; color: var(--ink); background: var(--paper); box-shadow: 0 28px 90px rgba(25, 44, 72, .3); }
 .internship-dialog[open] { animation: dialog-enter .22s ease-out; }
 .internship-dialog::backdrop { background: rgba(28, 46, 72, .55); backdrop-filter: blur(5px); }
@@ -264,8 +255,10 @@ h1, h2, h3, p { margin-top: 0; }
 .projects-heading { display: flex; align-items: end; justify-content: space-between; }
 .projects-heading .section-subtitle { max-width: 290px; margin: 0 0 3px 20px; }
 .project-grid { position: relative; display: grid; margin-top: 45px; gap: 70px; grid-template-columns: minmax(0, 1fr); counter-reset: project; }
-.project-grid::before { position: absolute; top: 4%; bottom: 4%; left: 50%; border-left: 1px dashed rgba(59, 89, 132, .2); content: ""; }
+.project-grid::before { display: none; }
 .project-card { position: relative; display: grid; min-width: 0; align-items: center; gap: 0 68px; grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1fr); counter-increment: project; }
+.project-card-link { color: inherit; text-decoration: none; }
+.project-card-link:focus-visible { border-radius: 14px; outline: 3px solid var(--hot-pink); outline-offset: 8px; }
 .project-card::before { position: absolute; top: 50%; left: 50%; z-index: 2; display: grid; width: 46px; height: 46px; place-items: center; border: 1px solid rgba(59, 89, 132, .15); border-radius: 50%; color: var(--navy); background: var(--pale-yellow); box-shadow: 0 5px 15px rgba(59, 89, 132, .08); content: counter(project, decimal-leading-zero); font-family: "Space Mono", monospace; font-size: 10px; transform: translate(-50%, -50%); }
 .project-preview { position: relative; display: block; aspect-ratio: 1.65 / 1; isolation: isolate; }
 .project-preview::before { position: absolute; z-index: -1; inset: 12px -10px -10px 12px; border-radius: 18px 70px 18px 70px; background: #dcedf8; content: ""; transform: rotate(1.5deg); transition: transform .3s ease; }
@@ -288,7 +281,10 @@ h1, h2, h3, p { margin-top: 0; }
 .project-description { max-width: 430px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.85; }
 .project-tech { display: flex; margin: 17px 0 0; padding: 0; flex-wrap: wrap; gap: 8px 14px; list-style: none; }
 .project-tech li { padding: 0; border: 0; border-radius: 0; color: var(--navy); background: none; font-family: "Space Mono", monospace; font-size: 9px; font-weight: 400; }
-.project-tech li::before { margin-right: 5px; color: var(--hot-pink); content: "✳"; }
+.project-tech li::before { display: inline-block; width: 5px; height: 5px; margin-right: 6px; border-radius: 50%; background: var(--hot-pink); content: ""; vertical-align: 1px; }
+.project-open { margin-top: 18px; color: var(--hot-pink); font-family: "Space Mono", monospace; font-size: 9px; letter-spacing: .06em; }
+.project-open span { display: inline-block; margin-left: 5px; transition: transform .2s ease; }
+.project-card-link:hover .project-open span { transform: translate(3px, -3px); }
 .project-footnote { margin: 24px 0 0; color: #8b98aa; font-family: "Caveat", cursive; font-size: 18px; text-align: center; }
 .project-footnote span { color: var(--hot-pink); }
 
@@ -317,6 +313,10 @@ h1, h2, h3, p { margin-top: 0; }
 
 .reveal-ready .reveal { opacity: 0; transform: translateY(24px) scale(.985); transition: opacity .7s ease var(--reveal-delay, 0ms), transform .8s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms); }
 .reveal-ready .reveal.is-visible { opacity: 1; transform: translateY(0) scale(1); }
+.reveal-ready .timeline-card.reveal { opacity: 0; transform: translateX(-52px); transition: opacity .65s ease var(--reveal-delay, 0ms), transform .8s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms); }
+.reveal-ready .timeline-card-internship.reveal { transform: translateX(52px); }
+.reveal-ready .timeline-card.reveal.is-visible { opacity: 1; transform: translateX(0); }
+.reveal-ready .timeline-card.reveal.is-visible { opacity: 1; transform: translateX(0); }
 .reveal-ready .hero-photo.reveal { transform: translateY(34px) scale(.9) rotate(2deg); transition-duration: .9s; }
 .reveal-ready .hero-photo.reveal.is-visible { transform: translateY(0) scale(1) rotate(0); }
 @keyframes twinkle { 0%, 100% { opacity: .6; transform: rotate(0deg) scale(.9); } 50% { opacity: 1; transform: rotate(45deg) scale(1.15); } }
@@ -336,8 +336,14 @@ h1, h2, h3, p { margin-top: 0; }
   .orbit-two { width: min(440px, 108%); }
   .star-two { right: 5%; }
   .about-grid { gap: 28px; grid-template-columns: 1fr 1fr; }
-  .timeline-card { padding: 24px; gap: 18px; }
-  .school-logo-link { width: 100px; height: 100px; }
+  .education { display: block; }
+  .education::before { position: absolute; top: 185px; bottom: 105px; left: 22px; display: block; border-left: 1px dashed rgba(59, 89, 132, .3); content: ""; }
+  .timeline-card { display: grid; min-height: 0; margin-left: 54px; padding: 24px 18px 24px 0; align-items: center; gap: 16px; grid-template-columns: 78px minmax(0, 1fr) auto; }
+  .timeline-card::after { display: none; }
+  .school-logo-link { width: 72px; height: 72px; margin: 0; }
+  .timeline-content { grid-column: 2; grid-row: 1 / span 2; }
+  .timeline-status { position: static; align-self: start; margin: 2px 4px 0 0; padding: 6px 9px; font-size: 8px; transform: none; grid-column: 3; grid-row: 1; }
+  .timeline-card-internship .timeline-status { transform: none; }
   .project-card { column-gap: 48px; grid-template-columns: minmax(0, 1fr) 56px minmax(0, 1fr); }
   .project-card::before { width: 42px; height: 42px; }
   .project-grid { gap: 58px; }
@@ -388,12 +394,19 @@ h1, h2, h3, p { margin-top: 0; }
   .skill-card-heading { margin-bottom: 15px; }
   .skill-card h3 { font-size: 19px; }
   .skill-app-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 13px 5px; }
-  .timeline-card { padding: 20px 17px; align-items: flex-start; gap: 13px; flex-wrap: wrap; }
-  .school-logo-link { width: 74px; height: 74px; border-radius: 13px; }
-  .timeline-content { flex: 1 1 calc(100% - 90px); }
-  .timeline-card h3 { font-size: 18px; line-height: 1.25; }
+  .education { padding-top: 52px; }
+  .education::before { top: 155px; bottom: 90px; left: 13px; }
+  .education > .section-heading { margin-bottom: 14px; }
+  .timeline-card { min-height: 0; margin-left: 38px; padding: 22px 0 24px; align-items: start; gap: 13px; grid-template-columns: 58px minmax(0, 1fr); }
+  .timeline-card + .timeline-card { margin-top: 0; }
+  .timeline-card::after { display: none; }
+  .school-logo-link { width: 54px; height: 54px; margin: 0; grid-column: 1; grid-row: 1 / span 2; }
+  .timeline-content { grid-column: 2; grid-row: 1 / span 2; }
+  .timeline-card h3 { max-width: 290px; font-size: 19px; line-height: 1.2; }
+  .timeline-label { max-width: calc(100% - 38px); font-size: 8px; }
   .timeline-content > p:not(.timeline-label) { font-size: 12px; }
-  .timeline-status { margin: 0 0 0 auto; padding: 4px 8px; font-size: 9px; }
+  .timeline-status { position: absolute; top: 17px; right: 1px; margin: 0; padding: 6px 8px; font-size: 8px; transform: none; }
+  .timeline-card-internship .timeline-status { transform: none; }
   .profile-links { gap: 7px; }
   .profile-link { padding: 0 9px; font-size: 9px; }
   .internship-details-trigger { min-height: 38px; padding: 0 12px; font-size: 10px; }
@@ -437,4 +450,5 @@ h1, h2, h3, p { margin-top: 0; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .reveal-ready .reveal { opacity: 1; transform: none; }
+  .reveal-ready .timeline-card.reveal, .reveal-ready .timeline-card-internship.reveal { opacity: 1; transform: none; }
 }

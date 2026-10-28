@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f8fbff">
+    <meta name="description" content="Jelajahi bagian-bagian website toko online Yune.co karya Annisa Nur Utami.">
+    <title>Yune.co — Proyek Runa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="yune.css">
+    <script src="yune.js" defer></script>
+  </head>
+  <body>
+    <header class="project-header">
+      <a class="back-link" href="index.html#portofolio"><span aria-hidden="true">←</span> Kembali ke portofolio</a>
+      <a class="brand" href="index.html" aria-label="Runa, kembali ke beranda"><span class="brand-mark">R</span> Runa<span class="brand-dot">.</span></a>
+    </header>
+
+    <main class="project-page">
+      <section class="project-intro" aria-labelledby="project-title">
+        <p class="eyebrow">PROJECT 06 · WEBSITE E-COMMERCE</p>
+        <h1 id="project-title">Yune<span>.co</span></h1>
+        <p class="intro-copy">Website toko online untuk merchandise anime, mainan, dan barang koleksi. Geser atau gunakan tombol untuk melihat setiap bagian website.</p>
+        <ul class="project-tags" aria-label="Kategori proyek">
+          <li>E-Commerce</li>
+          <li>Katalog Produk</li>
+          <li>Online Store</li>
+        </ul>
+      </section>
+
+      <section class="gallery" aria-label="Slide halaman website Yune.co">
+        <div class="gallery-topline">
+          <span class="gallery-kicker">JELAJAHI HALAMANNYA</span>
+          <span class="slide-count" aria-live="polite"><span id="current-slide">01</span> / 04</span>
+        </div>
+
+        <div class="slide-frame">
+          <div class="slides" id="slides">
+            <figure class="slide is-active" aria-hidden="false">
+              <img src="assets/projects/yune-shop-home.png" alt="Tampilan halaman beranda website Yune.co">
+              <figcaption><span>01</span><strong>Beranda</strong><small>Halaman utama toko Yune.co</small></figcaption>
+            </figure>
+            <figure class="slide" aria-hidden="true">
+              <img src="assets/projects/yune-shop-products.png" alt="Tampilan katalog produk website Yune.co" loading="lazy">
+              <figcaption><span>02</span><strong>Produk</strong><small>Jelajahi koleksi dan katalog produk</small></figcaption>
+            </figure>
+            <figure class="slide" aria-hidden="true">
+              <img src="assets/projects/yune-shop-about.png" alt="Tampilan halaman tentang Yune.co" loading="lazy">
+              <figcaption><span>03</span><strong>Tentang</strong><small>Kenali cerita di balik Yune.co</small></figcaption>
+            </figure>
+            <figure class="slide" aria-hidden="true">
+              <img src="assets/projects/yune-shop-news.png" alt="Tampilan halaman berita website Yune.co" loading="lazy">
+              <figcaption><span>04</span><strong>Berita</strong><small>Info dan kabar terbaru dari Yune.co</small></figcaption>
+            </figure>
+          </div>
+          <button class="slide-arrow slide-previous" type="button" aria-label="Lihat slide sebelumnya" aria-controls="slides">←</button>
+          <button class="slide-arrow slide-next" type="button" aria-label="Lihat slide berikutnya" aria-controls="slides">→</button>
+        </div>
+
+        <div class="gallery-controls">
+          <div class="slide-dots" role="group" aria-label="Pilih halaman website">
+            <button type="button" class="slide-dot is-active" aria-label="Tampilkan slide Beranda" aria-pressed="true" data-slide="0"></button>
+            <button type="button" class="slide-dot" aria-label="Tampilkan slide Produk" aria-pressed="false" data-slide="1"></button>
+            <button type="button" class="slide-dot" aria-label="Tampilkan slide Tentang" aria-pressed="false" data-slide="2"></button>
+            <button type="button" class="slide-dot" aria-label="Tampilkan slide Berita" aria-pressed="false" data-slide="3"></button>
+          </div>
+          <p class="swipe-hint">Pakai panah atau titik untuk berpindah slide <span aria-hidden="true">✦</span></p>
+        </div>
+      </section>
+
+      <footer class="project-footer">
+        <a href="index.html#portofolio"><span aria-hidden="true">←</span> Kembali melihat proyek lainnya</a>
+        <span>Dibuat oleh Runa · Annisa Nur Utami</span>
+      </footer>
+    </main>
+  </body>
+</html>
