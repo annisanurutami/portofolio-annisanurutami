@@ -1,54 +1,50 @@
-/* ============================================================
-   yune.js — Slide gallery for Yune.co project page
-   ============================================================ */
+const slides = [...document.querySelectorAll(".slide")];
+const dots = [...document.querySelectorAll(".slide-dot")];
+const currentSlide = document.querySelector("#current-slide");
+const previousButton = document.querySelector(".slide-previous");
+const nextButton = document.querySelector(".slide-next");
+const gallery = document.querySelector(".gallery");
+const slideFrame = document.querySelector(".slide-frame");
+let activeSlide = 0;
+let pointerStartX = null;
 
-(function () {
-  const slides = Array.from(document.querySelectorAll(".slide"));
-  const dots = Array.from(document.querySelectorAll(".dot"));
-  const prevBtn = document.querySelector(".slide-prev");
-  const nextBtn = document.querySelector(".slide-next");
-
-  if (!slides.length) return;
-
-  let current = 0;
-
-  function goTo(index) {
-    slides[current].classList.remove("is-active");
-    slides[current].setAttribute("aria-hidden", "true");
-    dots[current].classList.remove("is-active");
-    dots[current].setAttribute("aria-selected", "false");
-
-    current = (index + slides.length) % slides.length;
-
-    slides[current].classList.add("is-active");
-    slides[current].setAttribute("aria-hidden", "false");
-    dots[current].classList.add("is-active");
-    dots[current].setAttribute("aria-selected", "true");
-  }
-
-  if (prevBtn) prevBtn.addEventListener("click", () => goTo(current - 1));
-  if (nextBtn) nextBtn.addEventListener("click", () => goTo(current + 1));
-
-  dots.forEach((dot, i) => {
-    dot.addEventListener("click", () => goTo(i));
+function showSlide(index) {
+  activeSlide = (index + slides.length) % slides.length;
+  slides.forEach((slide, slideIndex) => {
+    const isActive = slideIndex === activeSlide;
+    slide.classList.toggle("is-active", isActive);
+    slide.setAttribute("aria-hidden", String(!isActive));
   });
+  dots.forEach((dot, dotIndex) => {
+    const isActive = dotIndex === activeSlide;
+    dot.classList.toggle("is-active", isActive);
+    dot.setAttribute("aria-pressed", String(isActive));
+  });
+  if (currentSlide) currentSlide.textContent = String(activeSlide + 1).padStart(2, "0");
+}
 
-  // Touch / swipe support
-  const frame = document.getElementById("slides");
-  if (frame) {
-    let startX = 0;
-    frame.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; }, { passive: true });
-    frame.addEventListener("touchend", (e) => {
-      const diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
-    });
-  }
-
-  // Keyboard navigation when frame is focused
-  if (frame) {
-    frame.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") goTo(current + 1);
-      if (e.key === "ArrowLeft") goTo(current - 1);
-    });
-  }
-})();
+if (slides.length && previousButton && nextButton) {
+  previousButton.addEventListener("click", () => showSlide(activeSlide - 1));
+  nextButton.addEventListener("click", () => showSlide(activeSlide + 1));
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => showSlide(Number(dot.dataset.slide)));
+  });
+  gallery?.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") showSlide(activeSlide - 1);
+    if (event.key === "ArrowRight") showSlide(activeSlide + 1);
+  });
+  slideFrame?.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    pointerStartX = event.clientX;
+  });
+  slideFrame?.addEventListener("pointerup", (event) => {
+    if (pointerStartX === null) return;
+    const distance = event.clientX - pointerStartX;
+    pointerStartX = null;
+    if (Math.abs(distance) < 45) return;
+    showSlide(activeSlide + (distance < 0 ? 1 : -1));
+  });
+  slideFrame?.addEventListener("pointercancel", () => {
+    pointerStartX = null;
+  });
+}
