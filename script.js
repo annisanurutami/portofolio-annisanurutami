@@ -1,19 +1,19 @@
 const menuToggle = document.querySelector(".menu-toggle");
-const siteNav = document.querySelector(".site-nav");
+const railNav = document.querySelector(".rail-nav");
 
-if (menuToggle && siteNav) {
+if (menuToggle && railNav) {
   menuToggle.addEventListener("click", () => {
     const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
     menuToggle.setAttribute("aria-expanded", String(!isExpanded));
     menuToggle.setAttribute("aria-label", isExpanded ? "Buka navigasi" : "Tutup navigasi");
-    siteNav.classList.toggle("is-open", !isExpanded);
+    railNav.classList.toggle("is-open", !isExpanded);
   });
 
-  siteNav.addEventListener("click", (event) => {
+  railNav.addEventListener("click", (event) => {
     if (event.target instanceof Element && event.target.closest("a")) {
       menuToggle.setAttribute("aria-expanded", "false");
       menuToggle.setAttribute("aria-label", "Buka navigasi");
-      siteNav.classList.remove("is-open");
+      railNav.classList.remove("is-open");
     }
   });
 }
@@ -39,8 +39,8 @@ document.addEventListener("click", (event) => {
 const year = document.querySelector("#year");
 if (year) year.textContent = String(new Date().getFullYear());
 
-/* Active navigation state */
-const navLinks = document.querySelectorAll(".site-nav a[data-nav]");
+/* Active chapter highlight in left rail */
+const navLinks = document.querySelectorAll(".rail-nav a[data-nav]");
 const sections = Array.from(navLinks)
   .map((link) => document.getElementById(link.dataset.nav || ""))
   .filter((section) => section instanceof HTMLElement);
@@ -58,7 +58,7 @@ if ("IntersectionObserver" in window && sections.length > 0) {
   sections.forEach((section) => navObserver.observe(section));
 }
 
-/* Interactive Split-Index Project Stage */
+/* Interactive Navy Project Theater */
 const PROJECTS = [
   {
     type: "WEBSITE · 01",
@@ -116,24 +116,32 @@ const PROJECTS = [
   }
 ];
 
-const projectRows = document.querySelectorAll(".project-item");
+const stripThumbs = document.querySelectorAll(".strip-thumb");
 const stageImage = document.querySelector("#stage-image");
 const stageType = document.querySelector("#stage-type");
 const stageTitle = document.querySelector("#stage-title");
 const stageDesc = document.querySelector("#stage-desc");
 const stageTech = document.querySelector("#stage-tech");
 const stageLink = document.querySelector("#stage-link");
-let activeProjectIndex = 0;
+const theaterCounter = document.querySelector("#theater-counter");
+const prevBtn = document.querySelector("#proj-prev");
+const nextBtn = document.querySelector("#proj-next");
+let activeIndex = 0;
 
-function selectProject(index) {
-  const data = PROJECTS[index];
-  if (!data) return;
-  activeProjectIndex = index;
+function renderProject(index) {
+  const safeIndex = (index + PROJECTS.length) % PROJECTS.length;
+  const data = PROJECTS[safeIndex];
+  activeIndex = safeIndex;
 
-  projectRows.forEach((row, idx) => {
-    row.classList.toggle("is-selected", idx === index);
+  stripThumbs.forEach((thumb, idx) => {
+    const isActive = idx === safeIndex;
+    thumb.classList.toggle("is-active", isActive);
+    thumb.setAttribute("aria-selected", String(isActive));
   });
 
+  if (theaterCounter) {
+    theaterCounter.textContent = `${String(safeIndex + 1).padStart(2, "0")} / ${String(PROJECTS.length).padStart(2, "0")}`;
+  }
   if (stageImage instanceof HTMLImageElement) {
     stageImage.src = data.img;
     stageImage.alt = data.alt;
@@ -159,25 +167,17 @@ function selectProject(index) {
   }
 }
 
-projectRows.forEach((row) => {
-  const index = Number(row.getAttribute("data-index"));
-  if (Number.isNaN(index)) return;
-
-  row.addEventListener("mouseenter", () => selectProject(index));
-  row.addEventListener("focus", () => selectProject(index));
-  row.addEventListener("click", (event) => {
-    if (event.target instanceof Element && event.target.closest("a")) return;
-    selectProject(index);
-  });
-  row.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      selectProject(index);
-    }
+stripThumbs.forEach((thumb) => {
+  thumb.addEventListener("click", () => {
+    const index = Number(thumb.getAttribute("data-index"));
+    if (!Number.isNaN(index)) renderProject(index);
   });
 });
 
-/* Lightbox Zoom for Active Project */
+if (prevBtn) prevBtn.addEventListener("click", () => renderProject(activeIndex - 1));
+if (nextBtn) nextBtn.addEventListener("click", () => renderProject(activeIndex + 1));
+
+/* Lightbox Zoom */
 const previewZoomBtn = document.querySelector("#preview-zoom-btn");
 const projectDialog = document.querySelector("#project-dialog");
 const projectDialogTitle = document.querySelector("#project-dialog-title");
@@ -187,7 +187,7 @@ const projectDialogDesc = document.querySelector("#project-dialog-desc");
 
 if (previewZoomBtn && projectDialog instanceof HTMLDialogElement) {
   previewZoomBtn.addEventListener("click", () => {
-    const data = PROJECTS[activeProjectIndex];
+    const data = PROJECTS[activeIndex];
     if (!data) return;
     if (projectDialogTitle) projectDialogTitle.textContent = data.title;
     if (projectDialogType) projectDialogType.textContent = data.type;
