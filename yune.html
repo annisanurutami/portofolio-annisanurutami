@@ -8,103 +8,61 @@
     <title>Yune.co — Annisa Nur Utami</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@500;600;700&family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&family=Sniglet:wght@400;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="yune.css">
     <script src="yune.js" defer></script>
   </head>
   <body>
-    <div class="yune-shell">
-      <aside class="yune-sidebar">
-        <div class="yune-top">
-          <a class="back-link" href="index.html#portofolio">← Kembali ke portofolio</a>
+
+    <header class="project-header">
+      <a class="back-link" href="index.html#portofolio">← Kembali ke portofolio</a>
+      <span class="project-brand">Runa<span>.</span></span>
+    </header>
+
+    <section class="project-intro">
+      <p class="project-kicker">PROYEK 06 · E-COMMERCE</p>
+      <h1>Yune<span>.co</span></h1>
+      <p class="project-desc">
+        Website toko online untuk merchandise anime, mainan, dan barang koleksi. Di dalamnya ada halaman katalog produk, fitur pencarian, profil toko, dan halaman berita.
+      </p>
+      <ul class="project-tags" aria-label="Kategori proyek">
+        <li>E-Commerce</li>
+        <li>Katalog Produk</li>
+        <li>Online Store</li>
+      </ul>
+    </section>
+
+    <section class="gallery" aria-label="Pratinjau halaman website Yune.co">
+      <div class="slide-frame" id="slides">
+        <figure class="slide is-active" aria-hidden="false">
+          <img src="assets/projects/yune-shop-home.png" alt="Tampilan halaman beranda website Yune.co">
+          <figcaption>01 Beranda toko Yune.co</figcaption>
+        </figure>
+        <figure class="slide" aria-hidden="true">
+          <img src="assets/projects/yune-shop-products.png" alt="Tampilan katalog produk website Yune.co" loading="lazy">
+          <figcaption>02 Daftar dan katalog produk</figcaption>
+        </figure>
+        <figure class="slide" aria-hidden="true">
+          <img src="assets/projects/yune-shop-about.png" alt="Tampilan halaman tentang Yune.co" loading="lazy">
+          <figcaption>03 Informasi tentang Yune.co</figcaption>
+        </figure>
+        <figure class="slide" aria-hidden="true">
+          <img src="assets/projects/yune-shop-news.png" alt="Tampilan halaman berita website Yune.co" loading="lazy">
+          <figcaption>04 Kabar dan update terbaru toko</figcaption>
+        </figure>
+      </div>
+
+      <div class="gallery-controls">
+        <button class="slide-btn slide-prev" type="button" aria-label="Slide sebelumnya" aria-controls="slides">←</button>
+        <div class="dot-track" role="tablist" aria-label="Pilih slide">
+          <button class="dot is-active" type="button" role="tab" aria-selected="true" data-index="0" aria-label="Slide 1"></button>
+          <button class="dot" type="button" role="tab" aria-selected="false" data-index="1" aria-label="Slide 2"></button>
+          <button class="dot" type="button" role="tab" aria-selected="false" data-index="2" aria-label="Slide 3"></button>
+          <button class="dot" type="button" role="tab" aria-selected="false" data-index="3" aria-label="Slide 4"></button>
         </div>
+        <button class="slide-btn slide-next" type="button" aria-label="Slide berikutnya" aria-controls="slides">→</button>
+      </div>
+    </section>
 
-        <div class="yune-meta">
-          <p class="yune-kicker">PROYEK 06 · E-COMMERCE</p>
-          <h1>Yune<span>.co</span></h1>
-          <p class="yune-desc">
-            Website toko online untuk merchandise anime, mainan, dan barang koleksi. Di dalamnya ada halaman katalog produk, fitur pencarian, profil toko, dan halaman berita.
-          </p>
-          <ul class="yune-tags" aria-label="Kategori proyek">
-            <li>E-Commerce</li>
-            <li>Katalog Produk</li>
-            <li>Online Store</li>
-          </ul>
-        </div>
-
-        <nav class="yune-pages" aria-label="Pilih halaman website Yune.co">
-          <p class="pages-label">DAFTAR HALAMAN</p>
-          <button type="button" class="page-btn is-active" data-slide="0" aria-pressed="true">
-            <span class="page-num">01</span>
-            <span><strong>Beranda</strong><small>Halaman utama toko</small></span>
-          </button>
-          <button type="button" class="page-btn" data-slide="1" aria-pressed="false">
-            <span class="page-num">02</span>
-            <span><strong>Produk</strong><small>Daftar dan katalog produk</small></span>
-          </button>
-          <button type="button" class="page-btn" data-slide="2" aria-pressed="false">
-            <span class="page-num">03</span>
-            <span><strong>Tentang</strong><small>Informasi tentang Yune.co</small></span>
-          </button>
-          <button type="button" class="page-btn" data-slide="3" aria-pressed="false">
-            <span class="page-num">04</span>
-            <span><strong>Berita</strong><small>Kabar dan update terbaru toko</small></span>
-          </button>
-        </nav>
-
-        <footer class="yune-foot">
-          <span>Annisa Nur Utami (Runa)</span>
-        </footer>
-      </aside>
-
-      <main class="yune-stage">
-        <div class="stage-bar">
-          <span class="stage-count" aria-live="polite"><span id="current-slide">01</span> / 04</span>
-          <div class="stage-arrows">
-            <button class="slide-arrow slide-previous" type="button" aria-label="Lihat halaman sebelumnya" aria-controls="slides">←</button>
-            <button class="slide-arrow slide-next" type="button" aria-label="Lihat halaman berikutnya" aria-controls="slides">→</button>
-          </div>
-        </div>
-
-        <div class="slide-frame" id="slides" tabindex="0" aria-label="Pratinjau halaman website Yune.co">
-          <figure class="slide is-active" aria-hidden="false">
-            <div class="slide-shot">
-              <img src="assets/projects/yune-shop-home.png" alt="Tampilan halaman beranda website Yune.co">
-            </div>
-            <figcaption>
-              <strong>01 · Beranda</strong>
-              <span>Halaman utama toko Yune.co</span>
-            </figcaption>
-          </figure>
-          <figure class="slide" aria-hidden="true">
-            <div class="slide-shot">
-              <img src="assets/projects/yune-shop-products.png" alt="Tampilan katalog produk website Yune.co" loading="lazy">
-            </div>
-            <figcaption>
-              <strong>02 · Produk</strong>
-              <span>Daftar dan katalog produk</span>
-            </figcaption>
-          </figure>
-          <figure class="slide" aria-hidden="true">
-            <div class="slide-shot">
-              <img src="assets/projects/yune-shop-about.png" alt="Tampilan halaman tentang Yune.co" loading="lazy">
-            </div>
-            <figcaption>
-              <strong>03 · Tentang</strong>
-              <span>Informasi tentang Yune.co</span>
-            </figcaption>
-          </figure>
-          <figure class="slide" aria-hidden="true">
-            <div class="slide-shot">
-              <img src="assets/projects/yune-shop-news.png" alt="Tampilan halaman berita website Yune.co" loading="lazy">
-            </div>
-            <figcaption>
-              <strong>04 · Berita</strong>
-              <span>Kabar dan update terbaru toko</span>
-            </figcaption>
-          </figure>
-        </div>
-      </main>
-    </div>
   </body>
 </html>

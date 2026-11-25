@@ -1,253 +1,200 @@
-const menuToggle = document.querySelector(".menu-toggle");
-const railNav = document.querySelector(".rail-nav");
+/* ============================================================
+   script.js — Portofolio Annisa Nur Utami (Runa)
+   ============================================================ */
 
-if (menuToggle && railNav) {
-  menuToggle.addEventListener("click", () => {
-    const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
-    menuToggle.setAttribute("aria-expanded", String(!isExpanded));
-    menuToggle.setAttribute("aria-label", isExpanded ? "Buka navigasi" : "Tutup navigasi");
-    railNav.classList.toggle("is-open", !isExpanded);
-  });
-
-  railNav.addEventListener("click", (event) => {
-    if (event.target instanceof Element && event.target.closest("a")) {
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.setAttribute("aria-label", "Buka navigasi");
-      railNav.classList.remove("is-open");
-    }
-  });
-}
-
-document.addEventListener("click", (event) => {
-  if (!(event.target instanceof Element)) return;
-  const anchor = event.target.closest('a[href^="#"]');
-  if (!(anchor instanceof HTMLAnchorElement)) return;
-
-  const targetId = anchor.hash.slice(1);
-  if (!targetId) return;
-
-  const target = document.getElementById(decodeURIComponent(targetId));
-  if (!target) return;
-
-  event.preventDefault();
-  window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
-  target.scrollIntoView({
-    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
-  });
-});
-
-const year = document.querySelector("#year");
-if (year) year.textContent = String(new Date().getFullYear());
-
-/* Active chapter highlight in left rail */
-const navLinks = document.querySelectorAll(".rail-nav a[data-nav]");
-const sections = Array.from(navLinks)
-  .map((link) => document.getElementById(link.dataset.nav || ""))
-  .filter((section) => section instanceof HTMLElement);
-
-if ("IntersectionObserver" in window && sections.length > 0) {
-  const navObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      navLinks.forEach((link) => {
-        link.classList.toggle("is-active", link.dataset.nav === entry.target.id);
-      });
-    });
-  }, { rootMargin: "-30% 0px -60% 0px" });
-
-  sections.forEach((section) => navObserver.observe(section));
-}
-
-/* Interactive Navy Project Theater */
+// ── Projects data ──────────────────────────────────────────────
 const PROJECTS = [
   {
-    type: "WEBSITE · 01",
+    id: "portfolio-runa",
     title: "Portfolio Runa",
+    type: "Website",
     desc: "Website profil pribadi berisi biodata, daftar keahlian, dan kumpulan proyek yang pernah aku buat.",
+    tags: ["PHP Native", "JavaScript", "CSS"],
     img: "assets/projects/portfolio-runa.png",
-    alt: "Tampilan website portofolio Runa",
-    tech: ["PHP Native", "JavaScript", "CSS"],
-    href: ""
+    link: null,
   },
   {
-    type: "DESAIN UI/UX · FIGMA · 02",
+    id: "learns-edc",
     title: "Learn's EDC",
+    type: "Desain Figma",
     desc: "Desain aplikasi e-learning yang aku buat di Figma untuk tugas sekolah, berisi tampilan dashboard belajar siswa.",
+    tags: ["Figma", "UI/UX"],
     img: "assets/projects/learns-edc.png",
-    alt: "Desain dashboard Learn's EDC di Figma",
-    tech: ["Figma", "UI/UX Design"],
-    href: ""
+    link: null,
   },
   {
-    type: "WEB DEVELOPMENT · 03",
+    id: "cloud-reads",
     title: "Cloud Reads Library",
+    type: "Website",
     desc: "Website buku tamu perpustakaan untuk mencatat dan mendata pengunjung yang datang.",
+    tags: ["PHP Native", "MySQL", "CSS"],
     img: "assets/projects/cloud-reads-library.png",
-    alt: "Tampilan masuk website Cloud Reads Library",
-    tech: ["PHP Native", "CSS", "JavaScript", "Database"],
-    href: ""
+    link: null,
   },
   {
-    type: "WEB DEVELOPMENT · 04",
+    id: "andagen",
     title: "Andagen Auto Mobil",
+    type: "Website",
     desc: "Website company profile untuk bengkel mobil, berisi info layanan servis dan perbaikan kendaraan.",
+    tags: ["HTML", "CSS", "JavaScript"],
     img: "assets/projects/andagen-auto-mobil.png",
-    alt: "Tampilan halaman utama website Andagen Auto Mobil",
-    tech: ["PHP Native", "JavaScript", "CSS"],
-    href: ""
+    link: null,
   },
   {
-    type: "WEB DEVELOPMENT · LARAVEL · 05",
+    id: "siwarga",
     title: "SIWARGA",
+    type: "Website",
     desc: "Website berbasis Laravel untuk mencatat keuangan, administrasi, dan data warga di lingkungan RT/RW.",
+    tags: ["Laravel", "MySQL", "Figma"],
     img: "assets/projects/siwarga.png",
-    alt: "Tampilan login aplikasi pengelolaan warga SIWARGA",
-    tech: ["Laravel", "PHP", "CSS", "Database", "JavaScript"],
-    href: ""
+    link: null,
   },
   {
-    type: "WEBSITE · E-COMMERCE · 06",
+    id: "yune",
     title: "Yune.co",
+    type: "Website",
     desc: "Website toko online untuk jualan merchandise anime, mainan, dan barang koleksi. Ada halaman katalog, pencarian barang, dan fitur keranjang.",
+    tags: ["PHP Native", "CSS", "JavaScript"],
     img: "assets/projects/yune-shop-home.png",
-    alt: "Halaman utama toko online Yune.co",
-    tech: ["E-Commerce", "Katalog Produk", "Online Store"],
-    href: "yune.html"
-  }
+    link: "yune.html",
+    linkLabel: "Lihat halaman proyek Yune.co ↗",
+  },
 ];
 
-const stripThumbs = document.querySelectorAll(".strip-thumb");
-const stageImage = document.querySelector("#stage-image");
-const stageType = document.querySelector("#stage-type");
-const stageTitle = document.querySelector("#stage-title");
-const stageDesc = document.querySelector("#stage-desc");
-const stageTech = document.querySelector("#stage-tech");
-const stageLink = document.querySelector("#stage-link");
-const theaterCounter = document.querySelector("#theater-counter");
-const prevBtn = document.querySelector("#proj-prev");
-const nextBtn = document.querySelector("#proj-next");
-let activeIndex = 0;
+// ── Render project cards ───────────────────────────────────────
+function renderProjects() {
+  const list = document.getElementById("project-list");
+  if (!list) return;
 
-function renderProject(index) {
-  const safeIndex = (index + PROJECTS.length) % PROJECTS.length;
-  const data = PROJECTS[safeIndex];
-  activeIndex = safeIndex;
+  PROJECTS.forEach((p, i) => {
+    const num = String(i + 1).padStart(2, "0");
+    const isEven = (i + 1) % 2 === 0;
 
-  stripThumbs.forEach((thumb, idx) => {
-    const isActive = idx === safeIndex;
-    thumb.classList.toggle("is-active", isActive);
-    thumb.setAttribute("aria-selected", String(isActive));
-  });
+    // Card inner HTML
+    const cardHTML = `
+      <div class="project-card-inner reveal" style="transition-delay:${i * 80}ms">
+        <p class="project-num">${num} · ${p.type.toUpperCase()}</p>
+        <h3>${p.title}</h3>
+        <img class="project-img" src="${p.img}" alt="Tampilan proyek ${p.title}" loading="lazy">
+        <p>${p.desc}</p>
+        <div class="project-tags">
+          ${p.tags.map(t => `<span class="project-tag">${t}</span>`).join("")}
+        </div>
+        ${p.link ? `<a class="project-link" href="${p.link}">${p.linkLabel || "Lihat proyek ↗"}</a>` : ""}
+      </div>
+    `;
 
-  if (theaterCounter) {
-    theaterCounter.textContent = `${String(safeIndex + 1).padStart(2, "0")} / ${String(PROJECTS.length).padStart(2, "0")}`;
-  }
-  if (stageImage instanceof HTMLImageElement) {
-    stageImage.src = data.img;
-    stageImage.alt = data.alt;
-  }
-  if (stageType) stageType.textContent = data.type;
-  if (stageTitle) stageTitle.textContent = data.title;
-  if (stageDesc) stageDesc.textContent = data.desc;
-  if (stageTech) {
-    stageTech.innerHTML = "";
-    data.tech.forEach((item) => {
-      const li = document.createElement("li");
-      li.textContent = item;
-      stageTech.appendChild(li);
-    });
-  }
-  if (stageLink instanceof HTMLAnchorElement) {
-    if (data.href) {
-      stageLink.href = data.href;
-      stageLink.hidden = false;
+    // Connector HTML
+    const connectorHTML = `
+      <div class="project-connector">
+        <div class="proj-node">${num}</div>
+        <div class="proj-line"></div>
+      </div>
+    `;
+
+    // Wrapper div (display:contents)
+    const wrapper = document.createElement("div");
+    wrapper.className = "project-card";
+
+    if (isEven) {
+      // even: empty first col, connector, card
+      wrapper.innerHTML = `<div></div>${connectorHTML}${cardHTML}`;
     } else {
-      stageLink.hidden = true;
+      // odd: card, connector, empty third col
+      wrapper.innerHTML = `${cardHTML}${connectorHTML}<div></div>`;
     }
-  }
+    list.appendChild(wrapper);
+  });
 }
 
-stripThumbs.forEach((thumb) => {
-  thumb.addEventListener("click", () => {
-    const index = Number(thumb.getAttribute("data-index"));
-    if (!Number.isNaN(index)) renderProject(index);
+// ── Scroll reveal ──────────────────────────────────────────────
+function initReveal() {
+  const els = document.querySelectorAll(".reveal");
+  const obs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-visible");
+          obs.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+  els.forEach((el) => obs.observe(el));
+}
+
+// ── Active nav highlight ───────────────────────────────────────
+function initActiveNav() {
+  const sections = document.querySelectorAll("section[id], footer[id]");
+  const navLinks = document.querySelectorAll(".site-nav a");
+
+  const obs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          navLinks.forEach((a) => {
+            a.classList.toggle("is-active", a.getAttribute("href") === "#" + e.target.id);
+          });
+        }
+      });
+    },
+    { rootMargin: "-40% 0px -55% 0px" }
+  );
+  sections.forEach((s) => obs.observe(s));
+}
+
+// ── Mobile nav toggle ──────────────────────────────────────────
+function initMobileNav() {
+  const toggle = document.querySelector(".menu-toggle");
+  const nav = document.getElementById("site-nav");
+  if (!toggle || !nav) return;
+
+  toggle.addEventListener("click", () => {
+    const open = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!open));
+    nav.classList.toggle("is-open", !open);
   });
+
+  // Close on link click
+  nav.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", () => {
+      toggle.setAttribute("aria-expanded", "false");
+      nav.classList.remove("is-open");
+    });
+  });
+}
+
+// ── Internship dialog ──────────────────────────────────────────
+function initInternshipDialog() {
+  const dialog = document.getElementById("internship-dialog");
+  if (!dialog) return;
+
+  document.querySelectorAll("[aria-controls='internship-dialog']").forEach((btn) => {
+    btn.addEventListener("click", () => dialog.showModal());
+  });
+
+  dialog.querySelectorAll("[data-dialog-close]").forEach((btn) => {
+    btn.addEventListener("click", () => dialog.close());
+  });
+
+  dialog.addEventListener("click", (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+}
+
+// ── Year ───────────────────────────────────────────────────────
+function initYear() {
+  const el = document.getElementById("year");
+  if (el) el.textContent = new Date().getFullYear();
+}
+
+// ── Boot ───────────────────────────────────────────────────────
+document.addEventListener("DOMContentLoaded", () => {
+  renderProjects();
+  initReveal();
+  initActiveNav();
+  initMobileNav();
+  initInternshipDialog();
+  initYear();
 });
-
-if (prevBtn) prevBtn.addEventListener("click", () => renderProject(activeIndex - 1));
-if (nextBtn) nextBtn.addEventListener("click", () => renderProject(activeIndex + 1));
-
-/* Lightbox Zoom */
-const previewZoomBtn = document.querySelector("#preview-zoom-btn");
-const projectDialog = document.querySelector("#project-dialog");
-const projectDialogTitle = document.querySelector("#project-dialog-title");
-const projectDialogType = document.querySelector("#project-dialog-type");
-const projectDialogImage = document.querySelector("#project-dialog-image");
-const projectDialogDesc = document.querySelector("#project-dialog-desc");
-
-if (previewZoomBtn && projectDialog instanceof HTMLDialogElement) {
-  previewZoomBtn.addEventListener("click", () => {
-    const data = PROJECTS[activeIndex];
-    if (!data) return;
-    if (projectDialogTitle) projectDialogTitle.textContent = data.title;
-    if (projectDialogType) projectDialogType.textContent = data.type;
-    if (projectDialogDesc) projectDialogDesc.textContent = data.desc;
-    if (projectDialogImage instanceof HTMLImageElement) {
-      projectDialogImage.src = data.img;
-      projectDialogImage.alt = data.alt;
-    }
-    projectDialog.showModal();
-  });
-
-  projectDialog.querySelectorAll("[data-project-dialog-close]").forEach((btn) => {
-    btn.addEventListener("click", () => projectDialog.close());
-  });
-  projectDialog.addEventListener("click", (event) => {
-    if (event.target === projectDialog) projectDialog.close();
-  });
-}
-
-/* Internship Dialog */
-const internshipDialog = document.querySelector("#internship-dialog");
-const internshipDetailsTrigger = document.querySelector(".internship-details-trigger");
-if (internshipDialog instanceof HTMLDialogElement && internshipDetailsTrigger instanceof HTMLButtonElement) {
-  internshipDetailsTrigger.addEventListener("click", () => internshipDialog.showModal());
-
-  internshipDialog.querySelectorAll("[data-dialog-close]").forEach((button) => {
-    button.addEventListener("click", () => internshipDialog.close());
-  });
-
-  internshipDialog.addEventListener("click", (event) => {
-    if (event.target === internshipDialog) internshipDialog.close();
-  });
-}
-
-/* Copy Email */
-const copyEmailBtn = document.querySelector("[data-copy-email]");
-if (copyEmailBtn instanceof HTMLButtonElement) {
-  const label = copyEmailBtn.querySelector("span");
-  const email = copyEmailBtn.getAttribute("data-copy-email") || "";
-  const defaultLabel = label?.textContent || "";
-  let resetTimer;
-
-  copyEmailBtn.addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(email);
-    } catch {
-      const tempInput = document.createElement("input");
-      tempInput.value = email;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      document.execCommand("copy");
-      tempInput.remove();
-    }
-
-    copyEmailBtn.classList.add("is-copied");
-    if (label) label.textContent = "Tersalin ✓";
-    window.clearTimeout(resetTimer);
-    resetTimer = window.setTimeout(() => {
-      copyEmailBtn.classList.remove("is-copied");
-      if (label) label.textContent = defaultLabel;
-    }, 2000);
-  });
-}
