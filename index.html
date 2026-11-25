@@ -8,194 +8,288 @@
     <title>Runa — Annisa Nur Utami</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
   </head>
   <body>
-    <div class="app-shell">
-      <aside class="side-rail" aria-label="Navigasi dan identitas Runa">
-        <div class="rail-top">
-          <a class="rail-brand" href="#home" aria-label="Runa, kembali ke atas">
-            <span class="rail-monogram">R</span>
-            <div>
-              <strong>Runa.</strong>
-              <small>Annisa Nur Utami</small>
-            </div>
-          </a>
-          <button class="menu-toggle" type="button" aria-label="Buka navigasi" aria-expanded="false" aria-controls="rail-nav">
-            <span></span><span></span>
-          </button>
-        </div>
-
-        <nav class="rail-nav" id="rail-nav" aria-label="Navigasi utama">
-          <a href="#home" class="is-active" data-nav="home"><span>01</span>Profil</a>
-          <a href="#portofolio" data-nav="portofolio"><span>02</span>Karya (06)</a>
-          <a href="#keahlian" data-nav="keahlian"><span>03</span>Keahlian</a>
-          <a href="#pendidikan" data-nav="pendidikan"><span>04</span>Pendidikan &amp; PKL</a>
-          <a href="#contact" data-nav="contact"><span>05</span>Kontak</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#home" aria-label="Runa, kembali ke beranda">
+          <span class="brand-name">Runa</span>
+          <span class="brand-sub">Annisa Nur Utami</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Buka navigasi" aria-expanded="false" aria-controls="site-nav">
+          <span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Navigasi utama">
+          <a href="#about" data-nav="about">Tentang</a>
+          <a href="#portofolio" data-nav="portofolio">Karya</a>
+          <a href="#keahlian" data-nav="keahlian">Keahlian</a>
+          <a href="#pendidikan" data-nav="pendidikan">Pendidikan</a>
+          <a class="nav-contact" href="#contact" data-nav="contact">Kontak</a>
         </nav>
+      </div>
+    </header>
 
-        <div class="rail-bottom">
-          <a class="rail-cert" href="assets/documents/sertifikat-annisa-nur-utami.pdf" target="_blank" rel="noopener noreferrer">
-            <span>Sertifikat PDF</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-          <div class="rail-socials" aria-label="Tautan sosial">
-            <a href="https://wa.me/6281387387679" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">WA</a>
-            <a href="https://www.instagram.com/ruuniiee_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">IG</a>
-            <a href="https://github.com/annisanurutami" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">GH</a>
-            <a href="mailto:02dinda14@gmail.com" aria-label="Email" title="Email">EM</a>
-          </div>
-          <p class="rail-foot">© <span id="year"></span> Runa · RPL</p>
+    <main>
+      <section class="hero wrap" id="home">
+        <div class="hero-bar">
+          <span>Rekayasa Perangkat Lunak</span>
+          <span>SMK Bina Mandiri Multimedia</span>
         </div>
-      </aside>
 
-      <main class="main-canvas">
-        <!-- 01: OPENER (Hero + Bio merged into one full-viewport asymmetric spread) -->
-        <section class="opener" id="home">
-          <div class="opener-text">
-            <p class="opener-tag">SISWI REKAYASA PERANGKAT LUNAK · SMK BINA MANDIRI MULTIMEDIA</p>
-            <h1>Halo, aku <span>Runa!</span></h1>
-            <p class="opener-lead">
-              Kenalin, aku <strong>Annisa Nur Utami</strong> — biasa dipanggil Runa. Aku senang belajar hal baru, mengeksplorasi dunia web, meracik desain unik, serta mewujudkan konsep segar menjadi karya digital yang fungsional.
+        <div class="hero-split">
+          <div class="hero-copy">
+            <h1>
+              Halo, aku <em>Runa</em> — merancang web yang rapi, hangat, dan punya karakter.
+            </h1>
+            <p class="hero-intro">
+              Aku <strong>Annisa Nur Utami</strong>, siswi Rekayasa Perangkat Lunak yang senang mengulik antarmuka, menyusun struktur basis data, dan mewujudkan konsep segar menjadi karya web yang fungsional.
+            </p>
+            <div class="hero-actions">
+              <a class="btn-solid" href="#portofolio">Lihat 6 karya pilihan</a>
+              <a class="btn-text" href="assets/documents/sertifikat-annisa-nur-utami.pdf" target="_blank" rel="noopener noreferrer">Sertifikat PDF ↗</a>
+            </div>
+          </div>
+
+          <figure class="hero-figure">
+            <div class="hero-portrait-mat">
+              <img class="hero-photo" src="assets/runa-profile.png" alt="Foto Runa, Annisa Nur Utami">
+            </div>
+            <figcaption class="hero-caption">
+              <span>Annisa Nur Utami (Runa)</span>
+              <span class="hero-note-hand">currently learning &amp; making cute things</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="about" id="about">
+        <div class="wrap about-split">
+          <div class="about-title-col">
+            <h2 class="section-title">Tentang Saya</h2>
+            <p class="about-kicker">Siswi RPL · Web &amp; UI/UX</p>
+          </div>
+
+          <div class="about-body-col">
+            <p class="about-lead">
+              Kenalin, aku Annisa Nur Utami — biasa dipanggil Runa.
+            </p>
+            <p class="about-text">
+              Aku siswi Rekayasa Perangkat Lunak (RPL) di SMK BINA MANDIRI MULTIMEDIA yang senang belajar hal baru, mengeksplorasi dunia web, dan menuangkan ide kreatif menjadi karya. Selalu tertarik meracik desain unik serta mewujudkan konsep-konsep baru yang beda dari yang lain.
             </p>
 
-            <div class="opener-actions">
-              <a class="cta-primary" href="#portofolio">Jelajahi 6 karya ↓</a>
-              <a class="cta-outline" href="assets/documents/sertifikat-annisa-nur-utami.pdf" target="_blank" rel="noopener noreferrer">Lihat sertifikat PDF ↗</a>
-            </div>
-
-            <dl class="opener-facts">
-              <div>
-                <dt>Panggilan</dt>
+            <dl class="fact-table">
+              <div class="fact-row">
+                <dt>Nama panggilan</dt>
                 <dd>Runa</dd>
               </div>
-              <div>
-                <dt>Lengkap</dt>
+              <div class="fact-row">
+                <dt>Nama lengkap</dt>
                 <dd>Annisa Nur Utami</dd>
               </div>
-              <div>
+              <div class="fact-row">
                 <dt>Sekolah</dt>
-                <dd>SMK Bina Mandiri Multimedia</dd>
+                <dd>SMK BINA MANDIRI MULTIMEDIA</dd>
+              </div>
+              <div class="fact-row">
+                <dt>Sertifikat &amp; dokumen</dt>
+                <dd>
+                  <a class="inline-doc-link" href="assets/documents/sertifikat-annisa-nur-utami.pdf" target="_blank" rel="noopener noreferrer">
+                    Buka sertifikat PDF ↗
+                  </a>
+                </dd>
               </div>
             </dl>
           </div>
+        </div>
+      </section>
 
-          <div class="opener-visual">
-            <img class="opener-photo" src="assets/runa-profile.png" alt="Foto Runa, Annisa Nur Utami">
-            <p class="opener-handnote">✦ currently learning &amp; making cute things</p>
+      <section class="projects wrap" id="portofolio">
+        <div class="projects-head">
+          <div>
+            <h2 class="section-title">Karya &amp; Proyek</h2>
+            <p class="section-lead">Kumpulan proyek website dan desain antarmuka yang pernah aku kerjakan.</p>
           </div>
-        </section>
+          <span class="projects-total">6 Proyek</span>
+        </div>
 
-        <!-- 02: INTERACTIVE NAVY PROJECT THEATER -->
-        <section class="theater" id="portofolio">
-          <header class="theater-header">
-            <div>
-              <p class="theater-kicker">02 · KARYA &amp; PORTOFOLIO</p>
-              <h2>Proyek Pilihan</h2>
-            </div>
-            <div class="theater-controls">
-              <span class="theater-counter" id="theater-counter" aria-live="polite">01 / 06</span>
-              <button class="theater-nav-btn" type="button" id="proj-prev" aria-label="Proyek sebelumnya">←</button>
-              <button class="theater-nav-btn" type="button" id="proj-next" aria-label="Proyek berikutnya">→</button>
-            </div>
-          </header>
+        <div class="projects-stage">
+          <div class="project-list" role="list">
+            <article class="project-item is-selected" role="listitem" tabindex="0" data-index="0">
+              <div class="project-row-head">
+                <span class="project-num">01</span>
+                <div class="project-row-meta">
+                  <h3>Portfolio Runa</h3>
+                  <p>Website · PHP Native, JavaScript, CSS</p>
+                </div>
+                <span class="project-arrow" aria-hidden="true">→</span>
+              </div>
+              <div class="project-mobile-detail">
+                <img src="assets/projects/portfolio-runa.png" alt="Tampilan website portofolio Runa" loading="lazy">
+                <p>Website portofolio pribadi untuk memperkenalkan diri, menampilkan keahlian, dan mengumpulkan karya.</p>
+                <ul class="tech-inline"><li>PHP Native</li><li>JavaScript</li><li>CSS</li></ul>
+              </div>
+            </article>
 
-          <div class="theater-stage">
-            <div class="theater-screen">
-              <button class="theater-zoom" type="button" id="preview-zoom-btn" aria-label="Perbesar pratinjau proyek">
+            <article class="project-item" role="listitem" tabindex="0" data-index="1">
+              <div class="project-row-head">
+                <span class="project-num">02</span>
+                <div class="project-row-meta">
+                  <h3>Learn's EDC</h3>
+                  <p>Desain UI/UX · Figma</p>
+                </div>
+                <span class="project-arrow" aria-hidden="true">→</span>
+              </div>
+              <div class="project-mobile-detail">
+                <img src="assets/projects/learns-edc.png" alt="Desain dashboard Learn's EDC di Figma" loading="lazy">
+                <p>Desain e-learning untuk tugas sekolah, dirancang di Figma dengan tampilan dashboard belajar yang informatif.</p>
+                <ul class="tech-inline"><li>Figma</li><li>UI/UX Design</li></ul>
+              </div>
+            </article>
+
+            <article class="project-item" role="listitem" tabindex="0" data-index="2">
+              <div class="project-row-head">
+                <span class="project-num">03</span>
+                <div class="project-row-meta">
+                  <h3>Cloud Reads Library</h3>
+                  <p>Web Development · PHP Native, Database</p>
+                </div>
+                <span class="project-arrow" aria-hidden="true">→</span>
+              </div>
+              <div class="project-mobile-detail">
+                <img src="assets/projects/cloud-reads-library.png" alt="Tampilan masuk website Cloud Reads Library" loading="lazy">
+                <p>Website penerima tamu perpustakaan untuk mencatat dan mendata pengunjung yang masuk.</p>
+                <ul class="tech-inline"><li>PHP Native</li><li>CSS</li><li>JavaScript</li><li>Database</li></ul>
+              </div>
+            </article>
+
+            <article class="project-item" role="listitem" tabindex="0" data-index="3">
+              <div class="project-row-head">
+                <span class="project-num">04</span>
+                <div class="project-row-meta">
+                  <h3>Andagen Auto Mobil</h3>
+                  <p>Web Development · PHP Native, JS, CSS</p>
+                </div>
+                <span class="project-arrow" aria-hidden="true">→</span>
+              </div>
+              <div class="project-mobile-detail">
+                <img src="assets/projects/andagen-auto-mobil.png" alt="Tampilan halaman utama website Andagen Auto Mobil" loading="lazy">
+                <p>Website profil untuk UMKM bengkel mobil, memperkenalkan layanan perawatan dan perbaikan kendaraan.</p>
+                <ul class="tech-inline"><li>PHP Native</li><li>JavaScript</li><li>CSS</li></ul>
+              </div>
+            </article>
+
+            <article class="project-item" role="listitem" tabindex="0" data-index="4">
+              <div class="project-row-head">
+                <span class="project-num">05</span>
+                <div class="project-row-meta">
+                  <h3>SIWARGA</h3>
+                  <p>Web Development · Laravel, Database</p>
+                </div>
+                <span class="project-arrow" aria-hidden="true">→</span>
+              </div>
+              <div class="project-mobile-detail">
+                <img src="assets/projects/siwarga.png" alt="Tampilan login aplikasi pengelolaan warga SIWARGA" loading="lazy">
+                <p>Website pengelolaan keuangan, administrasi, dan layanan warga di tingkat RT/RW.</p>
+                <ul class="tech-inline"><li>Laravel</li><li>PHP</li><li>CSS</li><li>Database</li><li>JavaScript</li></ul>
+              </div>
+            </article>
+
+            <article class="project-item project-item-yune" role="listitem" tabindex="0" data-index="5">
+              <div class="project-row-head">
+                <span class="project-num">06</span>
+                <div class="project-row-meta">
+                  <h3>Yune.co</h3>
+                  <p>Website E-Commerce · Katalog &amp; Keranjang</p>
+                </div>
+                <a class="project-direct-link" href="yune.html">Buka slide ↗</a>
+              </div>
+              <div class="project-mobile-detail">
+                <img src="assets/projects/yune-shop-home.png" alt="Halaman utama toko online Yune.co" loading="lazy">
+                <p>Website toko online untuk merchandise anime, mainan, dan barang koleksi, dengan katalog produk serta fitur pencarian dan keranjang.</p>
+                <ul class="tech-inline"><li>E-Commerce</li><li>Katalog Produk</li><li>Online Store</li></ul>
+                <a class="btn-solid mobile-yune-btn" href="yune.html">Lihat detail &amp; slide ↗</a>
+              </div>
+            </article>
+          </div>
+
+          <aside class="project-preview-pane" aria-live="polite">
+            <div class="preview-mat">
+              <button class="preview-zoom-btn" type="button" id="preview-zoom-btn" aria-label="Perbesar gambar proyek">
                 <img id="stage-image" src="assets/projects/portfolio-runa.png" alt="Tampilan website portofolio Runa">
-                <span class="zoom-badge">Perbesar ⤢</span>
+                <span class="preview-zoom-hint">Perbesar</span>
               </button>
             </div>
-
-            <div class="theater-info">
-              <p class="stage-type" id="stage-type">WEBSITE · 01</p>
+            <div class="preview-caption">
+              <div class="preview-caption-top">
+                <span class="preview-type" id="stage-type">WEBSITE · 01</span>
+                <a class="preview-ext-link" id="stage-link" href="yune.html" hidden>Lihat halaman slide ↗</a>
+              </div>
               <h3 id="stage-title">Portfolio Runa</h3>
-              <p class="stage-desc" id="stage-desc">Website portofolio pribadi untuk memperkenalkan diri, menampilkan keahlian, dan mengumpulkan karya.</p>
-              <ul class="stage-tech" id="stage-tech">
+              <p id="stage-desc">Website portofolio pribadi untuk memperkenalkan diri, menampilkan keahlian, dan mengumpulkan karya.</p>
+              <ul class="tech-inline" id="stage-tech">
                 <li>PHP Native</li>
                 <li>JavaScript</li>
                 <li>CSS</li>
               </ul>
-              <a class="stage-yune-cta" id="stage-link" href="yune.html" hidden>Lihat detail &amp; slide Yune.co ↗</a>
             </div>
-          </div>
+          </aside>
+        </div>
+      </section>
 
-          <div class="theater-strip" role="tablist" aria-label="Pilih proyek">
-            <button class="strip-thumb is-active" type="button" role="tab" aria-selected="true" data-index="0">
-              <img src="assets/projects/portfolio-runa.png" alt="" loading="lazy">
-              <span><strong>01</strong> Portfolio Runa</span>
-            </button>
-            <button class="strip-thumb" type="button" role="tab" aria-selected="false" data-index="1">
-              <img src="assets/projects/learns-edc.png" alt="" loading="lazy">
-              <span><strong>02</strong> Learn's EDC</span>
-            </button>
-            <button class="strip-thumb" type="button" role="tab" aria-selected="false" data-index="2">
-              <img src="assets/projects/cloud-reads-library.png" alt="" loading="lazy">
-              <span><strong>03</strong> Cloud Reads</span>
-            </button>
-            <button class="strip-thumb" type="button" role="tab" aria-selected="false" data-index="3">
-              <img src="assets/projects/andagen-auto-mobil.png" alt="" loading="lazy">
-              <span><strong>04</strong> Andagen Auto</span>
-            </button>
-            <button class="strip-thumb" type="button" role="tab" aria-selected="false" data-index="4">
-              <img src="assets/projects/siwarga.png" alt="" loading="lazy">
-              <span><strong>05</strong> SIWARGA</span>
-            </button>
-            <button class="strip-thumb" type="button" role="tab" aria-selected="false" data-index="5">
-              <img src="assets/projects/yune-shop-home.png" alt="" loading="lazy">
-              <span><strong>06</strong> Yune.co</span>
-            </button>
-          </div>
-        </section>
-
-        <dialog class="project-dialog" id="project-dialog" aria-labelledby="project-dialog-title">
-          <div class="project-dialog-content">
-            <header class="project-dialog-header">
-              <div>
-                <p class="dialog-kicker" id="project-dialog-type">WEBSITE · 01</p>
-                <h2 id="project-dialog-title">Portfolio Runa</h2>
-              </div>
-              <button class="dialog-close" type="button" data-project-dialog-close aria-label="Tutup pratinjau proyek">×</button>
-            </header>
-            <div class="project-dialog-body">
-              <img id="project-dialog-image" src="" alt="">
-              <p id="project-dialog-desc"></p>
+      <dialog class="project-dialog" id="project-dialog" aria-labelledby="project-dialog-title">
+        <div class="project-dialog-content">
+          <header class="project-dialog-header">
+            <div>
+              <p class="dialog-kicker" id="project-dialog-type">WEBSITE · 01</p>
+              <h2 id="project-dialog-title">Portfolio Runa</h2>
             </div>
+            <button class="dialog-close" type="button" data-project-dialog-close aria-label="Tutup pratinjau proyek">×</button>
+          </header>
+          <div class="project-dialog-body">
+            <img id="project-dialog-image" src="" alt="">
+            <p id="project-dialog-desc"></p>
           </div>
-        </dialog>
+        </div>
+      </dialog>
 
-        <!-- 03: SKILLS & TECH SHELF -->
-        <section class="skills-band" id="keahlian">
-          <div class="band-heading">
-            <p class="band-kicker">03 · KEAHLIAN &amp; PERANGKAT</p>
-            <h2>Apa yang Aku Pelajari &amp; Gunakan</h2>
+      <section class="skills wrap" id="keahlian">
+        <div class="skills-layout">
+          <div class="skills-core">
+            <h2 class="section-title">Keahlian &amp; Teknologi</h2>
+            <p class="section-lead">Tiga bidang utama yang terus aku asah bersama perangkat yang sehari-hari kupakai.</p>
+
+            <ol class="expertise-rows">
+              <li>
+                <span class="expertise-index">01</span>
+                <div>
+                  <h3>Web Development</h3>
+                  <p>Membangun website yang responsif dan fungsional.</p>
+                </div>
+              </li>
+              <li>
+                <span class="expertise-index">02</span>
+                <div>
+                  <h3>UI/UX Design</h3>
+                  <p>Merancang antarmuka yang menarik dan mudah dipakai.</p>
+                </div>
+              </li>
+              <li>
+                <span class="expertise-index">03</span>
+                <div>
+                  <h3>Database Structuring</h3>
+                  <p>Menyusun basis data yang rapi dan terstruktur.</p>
+                </div>
+              </li>
+            </ol>
           </div>
 
-          <div class="expertise-strip">
-            <article class="expertise-cell">
-              <span class="cell-num">01</span>
-              <h3>Web Development</h3>
-              <p>Membangun website yang responsif dan fungsional.</p>
-            </article>
-            <article class="expertise-cell">
-              <span class="cell-num">02</span>
-              <h3>UI/UX Design</h3>
-              <p>Merancang antarmuka yang menarik dan mudah dipakai.</p>
-            </article>
-            <article class="expertise-cell">
-              <span class="cell-num">03</span>
-              <h3>Database Structuring</h3>
-              <p>Menyusun basis data yang rapi dan terstruktur.</p>
-            </article>
-          </div>
-
-          <div class="tech-shelves">
-            <div class="shelf-row">
-              <h4>Bahasa &amp; Framework</h4>
-              <ul class="shelf-items">
+          <div class="tools-col">
+            <div class="tool-group">
+              <h3>Bahasa &amp; Framework</h3>
+              <ul class="tool-chips">
                 <li><img src="assets/skill-icons/php.svg" alt="" loading="lazy"><span>PHP (Native)</span></li>
                 <li><img src="assets/skill-icons/laravel.svg" alt="" loading="lazy"><span>Laravel</span></li>
                 <li><img src="assets/skill-icons/html5.svg" alt="" loading="lazy"><span>HTML5</span></li>
@@ -204,22 +298,22 @@
               </ul>
             </div>
 
-            <div class="shelf-row">
-              <h4>Desain &amp; Alur</h4>
-              <ul class="shelf-items">
+            <div class="tool-group">
+              <h3>Desain &amp; Alur Kerja</h3>
+              <ul class="tool-chips">
                 <li><img src="assets/skill-icons/figma.svg" alt="" loading="lazy"><span>Figma</span></li>
                 <li><img src="assets/skill-icons/canva.svg" alt="" loading="lazy"><span>Canva</span></li>
                 <li><img src="assets/skill-icons/mermaid.svg" alt="" loading="lazy"><span>Mermaid UML</span></li>
               </ul>
             </div>
 
-            <div class="shelf-row">
-              <h4>Editor, AI &amp; Lingkungan Kerja</h4>
-              <ul class="shelf-items">
+            <div class="tool-group">
+              <h3>Editor, AI &amp; Lingkungan Kerja</h3>
+              <ul class="tool-chips">
                 <li><img src="assets/skill-icons/vscode.svg" alt="" loading="lazy"><span>VS Code</span></li>
                 <li><img src="assets/skill-icons/cursor.svg" alt="" loading="lazy"><span>Cursor</span></li>
                 <li>
-                  <span class="shelf-svg" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2.5c.9 4.1 2.4 6.2 7.5 7.5-5.1 1.2-6.6 3.3-7.5 7.5-.9-4.2-2.4-6.3-7.5-7.5 5.1-1.3 6.6-3.4 7.5-7.5Z"></path><path d="M19 15.5c.4 1.8 1.2 2.6 3 3-.9.2-1.7.6-2.2 1.1-.5.5-.7 1.1-.8 1.9-.4-1.8-1.2-2.6-3-3 1.8-.4 2.6-1.2 3-3Z"></path></svg></span>
+                  <span class="tool-svg-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2.5c.9 4.1 2.4 6.2 7.5 7.5-5.1 1.2-6.6 3.3-7.5 7.5-.9-4.2-2.4-6.3-7.5-7.5 5.1-1.3 6.6-3.4 7.5-7.5Z"></path><path d="M19 15.5c.4 1.8 1.2 2.6 3 3-.9.2-1.7.6-2.2 1.1-.5.5-.7 1.1-.8 1.9-.4-1.8-1.2-2.6-3-3 1.8-.4 2.6-1.2 3-3Z"></path></svg></span>
                   <span>AI Gravity</span>
                 </li>
                 <li><img src="assets/skill-icons/gemini.svg" alt="" loading="lazy"><span>Gemini</span></li>
@@ -228,147 +322,176 @@
                 <li><img src="assets/skill-icons/phpmyadmin.svg" alt="" loading="lazy"><span>phpMyAdmin</span></li>
                 <li><img src="assets/skill-icons/mysql.svg" alt="" loading="lazy"><span>Database</span></li>
                 <li>
-                  <span class="shelf-svg shelf-svg-stroke" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7" rx="2"></rect><rect x="3" y="13" width="18" height="7" rx="2"></rect><path d="M7 7.5h.01M7 16.5h.01M11 7.5h6M11 16.5h6"></path></svg></span>
+                  <span class="tool-svg-badge tool-svg-stroke" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7" rx="2"></rect><rect x="3" y="13" width="18" height="7" rx="2"></rect><path d="M7 7.5h.01M7 16.5h.01M11 7.5h6M11 16.5h6"></path></svg></span>
                   <span>Localhost</span>
                 </li>
               </ul>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- 04: EDGE-TO-EDGE TWO-TONE EDUCATION & PKL SPLIT -->
-        <section class="edu-split" id="pendidikan">
-          <article class="edu-pane edu-pane-school">
-            <div class="edu-pane-head">
-              <span class="edu-kicker">04 · PENDIDIKAN</span>
-              <span class="edu-pill">Saat ini</span>
+      <section class="education wrap" id="pendidikan">
+        <div class="education-head">
+          <h2 class="section-title">Pendidikan &amp; PKL</h2>
+          <p class="section-lead">Perjalanan belajar di sekolah dan praktik kerja lapangan.</p>
+        </div>
+
+        <div class="edu-columns">
+          <article class="edu-entry">
+            <div class="edu-meta">
+              <span>Sekolah &amp; Program Keahlian</span>
+              <span class="edu-badge">Saat ini</span>
             </div>
-            <a class="edu-logo-wrap" href="https://smkbinamandirimultimedia.sch.id/" target="_blank" rel="noopener noreferrer" aria-label="Kunjungi situs SMK Bina Mandiri Multimedia">
-              <img src="assets/smk-bina-mandiri-logo-updated.png" alt="Logo SMK Bina Mandiri Multimedia">
-            </a>
-            <h3>SMK BINA MANDIRI MULTIMEDIA</h3>
-            <p>Rekayasa Perangkat Lunak (RPL) — belajar pengembangan perangkat lunak, desain web, dan mewujudkan ide kreatif.</p>
-            <div class="edu-pane-links">
-              <a href="https://smkbinamandirimultimedia.sch.id/" target="_blank" rel="noopener noreferrer">Website sekolah ↗</a>
-              <a href="https://www.instagram.com/smkbm_3" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+            <div class="edu-main">
+              <a class="edu-logo-box" href="https://smkbinamandirimultimedia.sch.id/" target="_blank" rel="noopener noreferrer" aria-label="Kunjungi situs SMK Bina Mandiri Multimedia">
+                <img src="assets/smk-bina-mandiri-logo-updated.png" alt="Logo SMK Bina Mandiri Multimedia">
+              </a>
+              <div>
+                <h3>SMK BINA MANDIRI MULTIMEDIA</h3>
+                <p>Rekayasa Perangkat Lunak (RPL) — belajar pengembangan perangkat lunak, desain web, dan mewujudkan ide kreatif.</p>
+                <div class="edu-links">
+                  <a href="https://smkbinamandirimultimedia.sch.id/" target="_blank" rel="noopener noreferrer">Website ↗</a>
+                  <a href="https://www.instagram.com/smkbm_3" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+                </div>
+              </div>
             </div>
           </article>
 
-          <article class="edu-pane edu-pane-pkl">
-            <div class="edu-pane-head">
-              <span class="edu-kicker">PRAKTIK KERJA LAPANGAN</span>
-              <span class="edu-pill edu-pill-pink">6 Bulan</span>
+          <article class="edu-entry">
+            <div class="edu-meta">
+              <span>Praktik Kerja Lapangan</span>
+              <span class="edu-badge edu-badge-pink">6 Bulan</span>
             </div>
-            <a class="edu-logo-wrap" href="https://telesisdigital.com/" target="_blank" rel="noopener noreferrer" aria-label="Kunjungi situs Telesis Digital Solution">
-              <img src="assets/telesis-logo.png" alt="Logo Telesis Digital Solution">
-            </a>
-            <h3>TELESIS DIGITAL SOLUTION</h3>
-            <p>Tempat PKL untuk mengenal lingkungan kerja profesional dan mengembangkan keterampilan di bidang digital.</p>
-            <div class="edu-pane-links">
-              <a href="https://telesisdigital.com/" target="_blank" rel="noopener noreferrer">Website ↗</a>
-              <a href="https://www.instagram.com/telesisdigitalsolution/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
-              <button class="internship-details-trigger" type="button" aria-haspopup="dialog" aria-controls="internship-dialog">Baca detail PKL →</button>
+            <div class="edu-main">
+              <a class="edu-logo-box" href="https://telesisdigital.com/" target="_blank" rel="noopener noreferrer" aria-label="Kunjungi situs Telesis Digital Solution">
+                <img src="assets/telesis-logo.png" alt="Logo Telesis Digital Solution">
+              </a>
+              <div>
+                <h3>TELESIS DIGITAL SOLUTION</h3>
+                <p>Tempat PKL untuk mengenal lingkungan kerja profesional dan mengembangkan keterampilan di bidang digital.</p>
+                <div class="edu-links">
+                  <a href="https://telesisdigital.com/" target="_blank" rel="noopener noreferrer">Website ↗</a>
+                  <a href="https://www.instagram.com/telesisdigitalsolution/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+                  <button class="internship-details-trigger" type="button" aria-haspopup="dialog" aria-controls="internship-dialog">Baca catatan PKL →</button>
+                </div>
+              </div>
             </div>
           </article>
-        </section>
+        </div>
+      </section>
 
-        <dialog class="internship-dialog" id="internship-dialog" aria-labelledby="internship-dialog-title">
-          <div class="internship-dialog-content">
-            <header class="internship-dialog-header">
-              <div class="internship-dialog-brand">
-                <img src="assets/telesis-logo.png" alt="" class="internship-dialog-logo">
-                <div>
-                  <p class="dialog-kicker">CERITA PRAKTIK KERJAKU</p>
-                  <h2 id="internship-dialog-title">PKL di Telesis Digital Solution</h2>
-                </div>
+      <dialog class="internship-dialog" id="internship-dialog" aria-labelledby="internship-dialog-title">
+        <div class="internship-dialog-content">
+          <header class="internship-dialog-header">
+            <div class="internship-dialog-brand">
+              <img src="assets/telesis-logo.png" alt="" class="internship-dialog-logo">
+              <div>
+                <p class="dialog-kicker">CERITA PRAKTIK KERJAKU</p>
+                <h2 id="internship-dialog-title">PKL di Telesis Digital Solution</h2>
               </div>
-              <button class="dialog-close" type="button" data-dialog-close aria-label="Tutup detail PKL">×</button>
-            </header>
+            </div>
+            <button class="dialog-close" type="button" data-dialog-close aria-label="Tutup detail PKL">×</button>
+          </header>
 
-            <div class="internship-dialog-body">
-              <section class="internship-detail-section">
-                <p class="internship-detail-kicker">TENTANG PERUSAHAAN</p>
-                <p>PT Telesis Digital Solution adalah perusahaan penyedia layanan teknologi digital dan solusi kreatif. Layanannya meliputi pengembangan website, pengembangan aplikasi, desain UI/UX, serta berbagai solusi digital.</p>
+          <div class="internship-dialog-body">
+            <section class="internship-detail-section">
+              <p class="internship-detail-kicker">TENTANG PERUSAHAAN</p>
+              <p>PT Telesis Digital Solution adalah perusahaan penyedia layanan teknologi digital dan solusi kreatif. Layanannya meliputi pengembangan website, pengembangan aplikasi, desain UI/UX, serta berbagai solusi digital.</p>
+            </section>
+
+            <div class="internship-detail-grid">
+              <section class="internship-detail-section internship-detail-card">
+                <p class="internship-detail-kicker">LOKASI</p>
+                <p>Ruko THB 34, Jalan Bukit Hijau I/1 PA 33, Pondok Indah, Jakarta Selatan.</p>
               </section>
-
-              <div class="internship-detail-grid">
-                <section class="internship-detail-section internship-detail-card">
-                  <p class="internship-detail-kicker">LOKASI</p>
-                  <p>Ruko THB 34, Jalan Bukit Hijau I/1 PA 33, Pondok Indah, Jakarta Selatan.</p>
-                </section>
-                <section class="internship-detail-section internship-detail-card">
-                  <p class="internship-detail-kicker">STRUKTUR KEPEMIMPINAN</p>
-                  <ul class="internship-detail-list">
-                    <li><strong>Direktur</strong><span>Ibu Ratna Yusnawati</span></li>
-                    <li><strong>Pimpinan</strong><span>Bapak Sigit Permana</span></li>
-                  </ul>
-                </section>
-              </div>
-
-              <section class="internship-detail-section">
-                <p class="internship-detail-kicker">PENGALAMAN &amp; PERAN RUNA</p>
-                <div class="internship-detail-grid">
-                  <div class="internship-detail-card">
-                    <h3>Peran &amp; pendampingan</h3>
-                    <ul class="internship-detail-list">
-                      <li><strong>Durasi</strong><span>Praktik Kerja Lapangan selama 6 bulan</span></li>
-                      <li><strong>Pembimbing</strong><span>Bapak Muhammad Aditya Prayoga, Project Manager</span></li>
-                    </ul>
-                  </div>
-                  <div class="internship-detail-card">
-                    <h3>Tugas &amp; pekerjaan</h3>
-                    <ul class="internship-detail-list internship-bullet-list">
-                      <li>Membuat desain UI/UX</li>
-                      <li>Melakukan debugging</li>
-                      <li>Merancang basis data (database)</li>
-                      <li>Membangun tampilan website</li>
-                    </ul>
-                  </div>
-                </div>
-              </section>
-
-              <section class="internship-detail-section internship-learning">
-                <p class="internship-detail-kicker">ILMU &amp; MANFAAT YANG DIDAPAT</p>
-                <ul class="internship-learning-list">
-                  <li>Memahami penggunaan Laravel</li>
-                  <li>Belajar mengintegrasikan AI untuk pengembangan Laravel</li>
-                  <li>Mengoperasikan GitHub secara profesional</li>
+              <section class="internship-detail-section internship-detail-card">
+                <p class="internship-detail-kicker">STRUKTUR KEPEMIMPINAN</p>
+                <ul class="internship-detail-list">
+                  <li><strong>Direktur</strong><span>Ibu Ratna Yusnawati</span></li>
+                  <li><strong>Pimpinan</strong><span>Bapak Sigit Permana</span></li>
                 </ul>
               </section>
             </div>
 
-            <footer class="internship-dialog-footer">
-              <a class="edu-links-pill" href="https://telesisdigital.com/" target="_blank" rel="noopener noreferrer">Website Telesis ↗</a>
-              <a class="edu-links-pill" href="https://www.instagram.com/telesisdigitalsolution/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
-              <button class="internship-dialog-done" type="button" data-dialog-close>Tutup</button>
-            </footer>
-          </div>
-        </dialog>
+            <section class="internship-detail-section">
+              <p class="internship-detail-kicker">PENGALAMAN &amp; PERAN RUNA</p>
+              <div class="internship-detail-grid">
+                <div class="internship-detail-card">
+                  <h3>Peran &amp; pendampingan</h3>
+                  <ul class="internship-detail-list">
+                    <li><strong>Durasi</strong><span>Praktik Kerja Lapangan selama 6 bulan</span></li>
+                    <li><strong>Pembimbing</strong><span>Bapak Muhammad Aditya Prayoga, Project Manager</span></li>
+                  </ul>
+                </div>
+                <div class="internship-detail-card">
+                  <h3>Tugas &amp; pekerjaan</h3>
+                  <ul class="internship-detail-list internship-bullet-list">
+                    <li>Membuat desain UI/UX</li>
+                    <li>Melakukan debugging</li>
+                    <li>Merancang basis data (database)</li>
+                    <li>Membangun tampilan website</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
 
-        <!-- 05: CLOSING CONTACT BAND -->
-        <footer class="closing-band" id="contact">
-          <div class="closing-left">
-            <p class="closing-kicker">05 · KONTAK</p>
-            <h2>Mari terhubung &amp; berbagi ide kreatif.</h2>
-            <div class="closing-email">
-              <a href="mailto:02dinda14@gmail.com">02dinda14@gmail.com</a>
-              <button class="copy-email-btn" type="button" data-copy-email="02dinda14@gmail.com"><span>Salin</span></button>
+            <section class="internship-detail-section internship-learning">
+              <p class="internship-detail-kicker">ILMU &amp; MANFAAT YANG DIDAPAT</p>
+              <ul class="internship-learning-list">
+                <li>Memahami penggunaan Laravel</li>
+                <li>Belajar mengintegrasikan AI untuk pengembangan Laravel</li>
+                <li>Mengoperasikan GitHub secara profesional</li>
+              </ul>
+            </section>
+          </div>
+
+          <footer class="internship-dialog-footer">
+            <a class="edu-links-pill" href="https://telesisdigital.com/" target="_blank" rel="noopener noreferrer">Website Telesis ↗</a>
+            <a class="edu-links-pill" href="https://www.instagram.com/telesisdigitalsolution/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+            <button class="internship-dialog-done" type="button" data-dialog-close>Tutup</button>
+          </footer>
+        </div>
+      </dialog>
+
+      <section class="contact" id="contact">
+        <div class="wrap contact-layout">
+          <div class="contact-main">
+            <p class="contact-eyebrow">Mari Terhubung</p>
+            <h2>Terima kasih sudah mampir — <em>ayo berbagi ide!</em></h2>
+            <p class="contact-desc">Kalau ingin berdiskusi soal proyek web, desain antarmuka, atau sekadar menyapa, silakan hubungi lewat email atau kanal di samping.</p>
+            <div class="contact-email-row">
+              <a class="contact-email-link" href="mailto:02dinda14@gmail.com">02dinda14@gmail.com</a>
+              <button class="copy-email-btn" type="button" data-copy-email="02dinda14@gmail.com">
+                <span>Salin alamat</span>
+              </button>
             </div>
           </div>
 
-          <div class="closing-right">
-            <div class="closing-links">
-              <a href="https://wa.me/6281387387679" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
-              <a href="https://www.instagram.com/ruuniiee_/" target="_blank" rel="noopener noreferrer">Instagram (@ruuniiee_) ↗</a>
-              <a href="https://github.com/annisanurutami" target="_blank" rel="noopener noreferrer">GitHub (annisanurutami) ↗</a>
-            </div>
-            <div class="closing-bottom">
-              <span class="closing-sign">salam hangat, Runa ♡</span>
-              <a class="back-top" href="#home">Ke atas ↑</a>
-            </div>
+          <div class="contact-channels">
+            <a href="https://wa.me/6281387387679" target="_blank" rel="noopener noreferrer">
+              <span>WhatsApp</span>
+              <small>+62 813-8738-7679 ↗</small>
+            </a>
+            <a href="https://www.instagram.com/ruuniiee_/" target="_blank" rel="noopener noreferrer">
+              <span>Instagram</span>
+              <small>@ruuniiee_ ↗</small>
+            </a>
+            <a href="https://github.com/annisanurutami" target="_blank" rel="noopener noreferrer">
+              <span>GitHub</span>
+              <small>annisanurutami ↗</small>
+            </a>
+            <p class="contact-signoff">salam hangat, Runa ♡</p>
           </div>
-        </footer>
-      </main>
-    </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <p>© <span id="year"></span> Annisa Nur Utami (Runa) · little things, big ideas</p>
+        <a class="back-top" href="#home">Kembali ke atas ↑</a>
+      </div>
+    </footer>
   </body>
 </html>
