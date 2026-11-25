@@ -63,7 +63,7 @@ const PROJECTS = [
   {
     type: "WEBSITE · 01",
     title: "Portfolio Runa",
-    desc: "Website portofolio pribadi untuk memperkenalkan diri, menampilkan keahlian, dan mengumpulkan karya.",
+    desc: "Website profil pribadi yang memuat biodata, daftar keahlian, dan dokumentasi proyek yang pernah dikerjakan.",
     img: "assets/projects/portfolio-runa.png",
     alt: "Tampilan website portofolio Runa",
     tech: ["PHP Native", "JavaScript", "CSS"],
@@ -72,7 +72,7 @@ const PROJECTS = [
   {
     type: "DESAIN UI/UX · FIGMA · 02",
     title: "Learn's EDC",
-    desc: "Desain e-learning untuk tugas sekolah, dirancang di Figma dengan tampilan dashboard belajar yang informatif.",
+    desc: "Rancangan antarmuka platform belajar online yang dibuat di Figma untuk tugas sekolah.",
     img: "assets/projects/learns-edc.png",
     alt: "Desain dashboard Learn's EDC di Figma",
     tech: ["Figma", "UI/UX Design"],
@@ -81,7 +81,7 @@ const PROJECTS = [
   {
     type: "WEB DEVELOPMENT · 03",
     title: "Cloud Reads Library",
-    desc: "Website penerima tamu perpustakaan untuk mencatat dan mendata pengunjung yang masuk.",
+    desc: "Aplikasi web pencatat data kunjungan tamu di perpustakaan.",
     img: "assets/projects/cloud-reads-library.png",
     alt: "Tampilan masuk website Cloud Reads Library",
     tech: ["PHP Native", "CSS", "JavaScript", "Database"],
@@ -90,7 +90,7 @@ const PROJECTS = [
   {
     type: "WEB DEVELOPMENT · 04",
     title: "Andagen Auto Mobil",
-    desc: "Website profil untuk UMKM bengkel mobil, memperkenalkan layanan perawatan dan perbaikan kendaraan.",
+    desc: "Website profil bengkel mobil untuk menampilkan informasi layanan perawatan dan perbaikan kendaraan.",
     img: "assets/projects/andagen-auto-mobil.png",
     alt: "Tampilan halaman utama website Andagen Auto Mobil",
     tech: ["PHP Native", "JavaScript", "CSS"],
@@ -99,7 +99,7 @@ const PROJECTS = [
   {
     type: "WEB DEVELOPMENT · LARAVEL · 05",
     title: "SIWARGA",
-    desc: "Website pengelolaan keuangan, administrasi, dan layanan warga di tingkat RT/RW.",
+    desc: "Aplikasi web berbasis Laravel untuk mengelola administrasi, keuangan, dan data warga di tingkat RT/RW.",
     img: "assets/projects/siwarga.png",
     alt: "Tampilan login aplikasi pengelolaan warga SIWARGA",
     tech: ["Laravel", "PHP", "CSS", "Database", "JavaScript"],
@@ -108,7 +108,7 @@ const PROJECTS = [
   {
     type: "WEBSITE · E-COMMERCE · 06",
     title: "Yune.co",
-    desc: "Website toko online untuk merchandise anime, mainan, dan barang koleksi, dengan katalog produk serta fitur pencarian dan keranjang.",
+    desc: "Website toko online merchandise anime, mainan, dan barang koleksi yang dilengkapi katalog produk, pencarian, dan keranjang belanja.",
     img: "assets/projects/yune-shop-home.png",
     alt: "Halaman utama toko online Yune.co",
     tech: ["E-Commerce", "Katalog Produk", "Online Store"],
