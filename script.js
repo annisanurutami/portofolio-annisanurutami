@@ -39,7 +39,7 @@ document.addEventListener("click", (event) => {
 const year = document.querySelector("#year");
 if (year) year.textContent = String(new Date().getFullYear());
 
-/* Active nav link on scroll */
+/* Active navigation state */
 const navLinks = document.querySelectorAll(".site-nav a[data-nav]");
 const sections = Array.from(navLinks)
   .map((link) => document.getElementById(link.dataset.nav || ""))
@@ -53,104 +53,154 @@ if ("IntersectionObserver" in window && sections.length > 0) {
         link.classList.toggle("is-active", link.dataset.nav === entry.target.id);
       });
     });
-  }, { rootMargin: "-35% 0px -55% 0px" });
+  }, { rootMargin: "-30% 0px -60% 0px" });
 
   sections.forEach((section) => navObserver.observe(section));
 }
 
-/* Skills Workbench Filter */
-const skillFilterButtons = document.querySelectorAll("[data-skill-filter]");
-const skillItems = document.querySelectorAll("#skill-app-list li");
-const workbenchTitle = document.querySelector(".workbench-title");
+/* Interactive Split-Index Project Stage */
+const PROJECTS = [
+  {
+    type: "WEBSITE · 01",
+    title: "Portfolio Runa",
+    desc: "Website portofolio pribadi untuk memperkenalkan diri, menampilkan keahlian, dan mengumpulkan karya.",
+    img: "assets/projects/portfolio-runa.png",
+    alt: "Tampilan website portofolio Runa",
+    tech: ["PHP Native", "JavaScript", "CSS"],
+    href: ""
+  },
+  {
+    type: "DESAIN UI/UX · FIGMA · 02",
+    title: "Learn's EDC",
+    desc: "Desain e-learning untuk tugas sekolah, dirancang di Figma dengan tampilan dashboard belajar yang informatif.",
+    img: "assets/projects/learns-edc.png",
+    alt: "Desain dashboard Learn's EDC di Figma",
+    tech: ["Figma", "UI/UX Design"],
+    href: ""
+  },
+  {
+    type: "WEB DEVELOPMENT · 03",
+    title: "Cloud Reads Library",
+    desc: "Website penerima tamu perpustakaan untuk mencatat dan mendata pengunjung yang masuk.",
+    img: "assets/projects/cloud-reads-library.png",
+    alt: "Tampilan masuk website Cloud Reads Library",
+    tech: ["PHP Native", "CSS", "JavaScript", "Database"],
+    href: ""
+  },
+  {
+    type: "WEB DEVELOPMENT · 04",
+    title: "Andagen Auto Mobil",
+    desc: "Website profil untuk UMKM bengkel mobil, memperkenalkan layanan perawatan dan perbaikan kendaraan.",
+    img: "assets/projects/andagen-auto-mobil.png",
+    alt: "Tampilan halaman utama website Andagen Auto Mobil",
+    tech: ["PHP Native", "JavaScript", "CSS"],
+    href: ""
+  },
+  {
+    type: "WEB DEVELOPMENT · LARAVEL · 05",
+    title: "SIWARGA",
+    desc: "Website pengelolaan keuangan, administrasi, dan layanan warga di tingkat RT/RW.",
+    img: "assets/projects/siwarga.png",
+    alt: "Tampilan login aplikasi pengelolaan warga SIWARGA",
+    tech: ["Laravel", "PHP", "CSS", "Database", "JavaScript"],
+    href: ""
+  },
+  {
+    type: "WEBSITE · E-COMMERCE · 06",
+    title: "Yune.co",
+    desc: "Website toko online untuk merchandise anime, mainan, dan barang koleksi, dengan katalog produk serta fitur pencarian dan keranjang.",
+    img: "assets/projects/yune-shop-home.png",
+    alt: "Halaman utama toko online Yune.co",
+    tech: ["E-Commerce", "Katalog Produk", "Online Store"],
+    href: "yune.html"
+  }
+];
 
-skillFilterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const filter = button.getAttribute("data-skill-filter") || "all";
-    skillFilterButtons.forEach((btn) => {
-      const isMatch = btn === button;
-      btn.classList.toggle("is-active", isMatch);
-      btn.setAttribute("aria-pressed", String(isMatch));
+const projectRows = document.querySelectorAll(".project-item");
+const stageImage = document.querySelector("#stage-image");
+const stageType = document.querySelector("#stage-type");
+const stageTitle = document.querySelector("#stage-title");
+const stageDesc = document.querySelector("#stage-desc");
+const stageTech = document.querySelector("#stage-tech");
+const stageLink = document.querySelector("#stage-link");
+let activeProjectIndex = 0;
+
+function selectProject(index) {
+  const data = PROJECTS[index];
+  if (!data) return;
+  activeProjectIndex = index;
+
+  projectRows.forEach((row, idx) => {
+    row.classList.toggle("is-selected", idx === index);
+  });
+
+  if (stageImage instanceof HTMLImageElement) {
+    stageImage.src = data.img;
+    stageImage.alt = data.alt;
+  }
+  if (stageType) stageType.textContent = data.type;
+  if (stageTitle) stageTitle.textContent = data.title;
+  if (stageDesc) stageDesc.textContent = data.desc;
+  if (stageTech) {
+    stageTech.innerHTML = "";
+    data.tech.forEach((item) => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      stageTech.appendChild(li);
     });
+  }
+  if (stageLink instanceof HTMLAnchorElement) {
+    if (data.href) {
+      stageLink.href = data.href;
+      stageLink.hidden = false;
+    } else {
+      stageLink.hidden = true;
+    }
+  }
+}
 
-    let visibleCount = 0;
-    skillItems.forEach((item) => {
-      const categories = (item.getAttribute("data-skill-cat") || "").split(/\s+/);
-      const shouldShow = filter === "all" || categories.includes(filter);
-      item.classList.toggle("is-hidden", !shouldShow);
-      if (shouldShow) visibleCount += 1;
-    });
+projectRows.forEach((row) => {
+  const index = Number(row.getAttribute("data-index"));
+  if (Number.isNaN(index)) return;
 
-    if (workbenchTitle) {
-      workbenchTitle.textContent = `toolbox.stack — ${visibleCount} items`;
+  row.addEventListener("mouseenter", () => selectProject(index));
+  row.addEventListener("focus", () => selectProject(index));
+  row.addEventListener("click", (event) => {
+    if (event.target instanceof Element && event.target.closest("a")) return;
+    selectProject(index);
+  });
+  row.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      selectProject(index);
     }
   });
 });
 
-/* Portfolio Category Filter */
-const projectFilterButtons = document.querySelectorAll("[data-project-filter]");
-const projectCards = document.querySelectorAll("#project-grid .project-card");
-
-projectFilterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const filter = button.getAttribute("data-project-filter") || "all";
-    projectFilterButtons.forEach((btn) => {
-      const isMatch = btn === button;
-      btn.classList.toggle("is-active", isMatch);
-      btn.setAttribute("aria-pressed", String(isMatch));
-    });
-
-    projectCards.forEach((card) => {
-      const categories = (card.getAttribute("data-project-cat") || "").split(/\s+/);
-      const shouldShow = filter === "all" || categories.includes(filter);
-      card.classList.toggle("is-hidden", !shouldShow);
-      if (shouldShow) card.classList.add("is-visible");
-    });
-  });
-});
-
-/* Project Quick-View Dialog */
+/* Lightbox Zoom for Active Project */
+const previewZoomBtn = document.querySelector("#preview-zoom-btn");
 const projectDialog = document.querySelector("#project-dialog");
 const projectDialogTitle = document.querySelector("#project-dialog-title");
 const projectDialogType = document.querySelector("#project-dialog-type");
 const projectDialogImage = document.querySelector("#project-dialog-image");
 const projectDialogDesc = document.querySelector("#project-dialog-desc");
-const projectDialogTech = document.querySelector("#project-dialog-tech");
 
-if (projectDialog instanceof HTMLDialogElement) {
-  document.querySelectorAll("[data-project-modal]").forEach((card) => {
-    const inspectBtn = card.querySelector(".project-inspect-btn");
-    const openProjectModal = () => {
-      const title = card.querySelector("h3")?.textContent || "";
-      const type = card.querySelector(".project-type")?.textContent || "";
-      const desc = card.querySelector(".project-description")?.textContent || "";
-      const img = card.querySelector(".project-shot img");
-      const techItems = card.querySelectorAll(".project-tech li");
-
-      if (projectDialogTitle) projectDialogTitle.textContent = title;
-      if (projectDialogType) projectDialogType.textContent = type;
-      if (projectDialogDesc) projectDialogDesc.textContent = desc;
-      if (projectDialogImage instanceof HTMLImageElement && img instanceof HTMLImageElement) {
-        projectDialogImage.src = img.src;
-        projectDialogImage.alt = img.alt;
-      }
-      if (projectDialogTech) {
-        projectDialogTech.innerHTML = "";
-        techItems.forEach((li) => {
-          const clone = document.createElement("li");
-          clone.textContent = li.textContent || "";
-          projectDialogTech.appendChild(clone);
-        });
-      }
-      projectDialog.showModal();
-    };
-
-    if (inspectBtn) {
-      inspectBtn.addEventListener("click", openProjectModal);
+if (previewZoomBtn && projectDialog instanceof HTMLDialogElement) {
+  previewZoomBtn.addEventListener("click", () => {
+    const data = PROJECTS[activeProjectIndex];
+    if (!data) return;
+    if (projectDialogTitle) projectDialogTitle.textContent = data.title;
+    if (projectDialogType) projectDialogType.textContent = data.type;
+    if (projectDialogDesc) projectDialogDesc.textContent = data.desc;
+    if (projectDialogImage instanceof HTMLImageElement) {
+      projectDialogImage.src = data.img;
+      projectDialogImage.alt = data.alt;
     }
+    projectDialog.showModal();
   });
 
-  projectDialog.querySelectorAll("[data-project-dialog-close]").forEach((button) => {
-    button.addEventListener("click", () => projectDialog.close());
+  projectDialog.querySelectorAll("[data-project-dialog-close]").forEach((btn) => {
+    btn.addEventListener("click", () => projectDialog.close());
   });
   projectDialog.addEventListener("click", (event) => {
     if (event.target === projectDialog) projectDialog.close();
@@ -172,7 +222,7 @@ if (internshipDialog instanceof HTMLDialogElement && internshipDetailsTrigger in
   });
 }
 
-/* Copy Email Button */
+/* Copy Email */
 const copyEmailBtn = document.querySelector("[data-copy-email]");
 if (copyEmailBtn instanceof HTMLButtonElement) {
   const label = copyEmailBtn.querySelector("span");
@@ -193,45 +243,11 @@ if (copyEmailBtn instanceof HTMLButtonElement) {
     }
 
     copyEmailBtn.classList.add("is-copied");
-    if (label) label.textContent = "Email tersalin! ✓";
+    if (label) label.textContent = "Tersalin ✓";
     window.clearTimeout(resetTimer);
     resetTimer = window.setTimeout(() => {
       copyEmailBtn.classList.remove("is-copied");
       if (label) label.textContent = defaultLabel;
-    }, 2200);
+    }, 2000);
   });
-}
-
-/* Scroll Reveal */
-const revealItems = document.querySelectorAll([
-  ".hero-copy > *",
-  ".portrait-frame",
-  ".section-heading",
-  ".about-copy",
-  ".about-card",
-  ".skill-workbench",
-  ".skill-card-expertise",
-  ".project-card",
-  ".project-footnote",
-  ".timeline-card",
-  ".contact-card"
-].join(", "));
-
-if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  document.documentElement.classList.add("reveal-ready");
-  revealItems.forEach((item, index) => {
-    item.classList.add("reveal");
-    item.style.setProperty("--reveal-delay", `${(index % 3) * 65}ms`);
-  });
-
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: "0px 0px -5% 0px" });
-
-  revealItems.forEach((item) => revealObserver.observe(item));
 }
