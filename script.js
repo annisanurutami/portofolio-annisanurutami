@@ -57,6 +57,39 @@ if (internshipDialog instanceof HTMLDialogElement && internshipDetailsTrigger in
   });
 }
 
+const projectDialog = document.querySelector("#project-dialog");
+if (projectDialog instanceof HTMLDialogElement) {
+  const projectDialogTitle = projectDialog.querySelector("#project-dialog-title");
+  const projectDialogImage = projectDialog.querySelector("#project-dialog-image");
+  const projectDialogClose = projectDialog.querySelector("[data-project-dialog-close]");
+
+  document.querySelectorAll(".project-preview-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!(button instanceof HTMLButtonElement)) return;
+      const image = button.dataset.projectImage;
+      const title = button.dataset.projectTitle;
+      if (!image || !title) return;
+
+      if (projectDialogTitle) projectDialogTitle.textContent = title;
+      if (projectDialogImage instanceof HTMLImageElement) {
+        projectDialogImage.src = image;
+        projectDialogImage.alt = `Pratinjau ${title}`;
+      }
+      projectDialog.showModal();
+    });
+  });
+
+  if (projectDialogClose instanceof HTMLButtonElement) {
+    projectDialogClose.addEventListener("click", () => projectDialog.close());
+  }
+  projectDialog.addEventListener("click", (event) => {
+    if (event.target === projectDialog) projectDialog.close();
+  });
+  projectDialog.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") projectDialog.close();
+  });
+}
+
 const revealItems = document.querySelectorAll([
   ".hero-copy > .eyebrow",
   ".hero-copy > h1",
